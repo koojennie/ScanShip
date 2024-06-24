@@ -33,7 +33,7 @@ a {
 }
 
 a:hover {
-    color: var(--c-brand-light);
+    color: #6a96ab;
 }
 
 img {
@@ -201,7 +201,7 @@ img {
 .review small {
     font-weight: 600;
     text-transform: uppercase;
-    color: var(--c-brand);
+    color: #033C57;
 }
 
 .review-head {
@@ -218,7 +218,17 @@ img {
     transform: rotate(45deg);
 }
 
+.btn-primary {
+    border-color: #033C57;
+    background-color: #033C57;
+}
+
+.btn-primary:hover {
+    background-color: #6a96ab;
+    border-color: #6a96ab;
+}
 /* TEAM */
+
 .team-member-content {
     background-color: var(--c-brand);
     position: absolute;
@@ -234,6 +244,11 @@ img {
 .team-member:hover .team-member-content {
     opacity: 1;
     bottom: 24px;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #033C57;
+    background-color: white;
 }
 
 /* FOOTER */
@@ -286,3 +301,20 @@ footer .line {
     color: white;
 }
 
+/* login.html */
+.bg-color {
+    background-color: #CADEE3;
+}
+
+.d-flex .justify-content-center .text-bg-primary {
+    background-color: #CADEE3;
+}
+
+.card-body {
+    background-color: #6B8E99;
+    border-radius: 45px;
+}
+
+.btn {
+    background-color: #033C57;
+}
