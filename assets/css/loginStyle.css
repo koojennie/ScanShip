@@ -1,0 +1,284 @@
+
+
+.login {
+    background-color: #cadee3;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .login .div {
+    background-color: #cadee3;
+    overflow: hidden;
+    width: 1200px;
+    height: 628px;
+    position: relative;
+  }
+  
+  .login .overlap-group {
+    position: absolute;
+    width: 604px;
+    height: 662px;
+    top: -105px;
+    left: 671px;
+  }
+  
+  .login .ellipse {
+    position: absolute;
+    width: 284px;
+    height: 284px;
+    top: 0;
+    left: 320px;
+    border-radius: 142px;
+    border: 1px solid;
+    border-color: #ffffff;
+    opacity: 0.2;
+  }
+  
+  .login .card {
+    position: absolute;
+    width: 479px;
+    height: 474px;
+    top: 188px;
+    left: 0;
+    background-color: #6b8d98;
+    border-radius: 27px;
+    border: 1px solid;
+    border-color: #fffbfb;
+    backdrop-filter: blur(60px) brightness(100%);
+    -webkit-backdrop-filter: blur(60px) brightness(100%);
+    opacity: 0.5;
+  }
+  
+  .login .card-2 {
+    position: absolute;
+    width: 419px;
+    height: 50px;
+    top: 364px;
+    left: 30px;
+    border-radius: 7px;
+    border: 1px solid;
+    border-color: transparent;
+    backdrop-filter: blur(60px) brightness(100%);
+    -webkit-backdrop-filter: blur(60px) brightness(100%);
+    border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(211.44, 211.44, 211.44, 0.1)) 1;
+    background: linear-gradient(
+      180deg,
+      rgba(201.33, 201.33, 201.33, 0.8) 0%,
+      rgba(200.95, 200.95, 200.95, 0.75) 0.01%,
+      rgba(196, 196, 196, 0.1) 100%
+    );
+    opacity: 0.8;
+  }
+  
+  .login .card-3 {
+    position: absolute;
+    width: 419px;
+    height: 50px;
+    top: 467px;
+    left: 30px;
+    border-radius: 7px;
+    border: 1px solid;
+    border-color: transparent;
+    backdrop-filter: blur(60px) brightness(100%);
+    -webkit-backdrop-filter: blur(60px) brightness(100%);
+    border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(211.44, 211.44, 211.44, 0.1)) 1;
+    background: linear-gradient(180deg, rgba(201.33, 201.33, 201.33, 0.8) 0%, rgba(196, 196, 196, 0.1) 100%);
+    opacity: 0.8;
+  }
+  
+  .login .card-4 {
+    position: absolute;
+    width: 419px;
+    height: 50px;
+    top: 572px;
+    left: 30px;
+    background-color: #033c57;
+    border-radius: 7px;
+    opacity: 0.8;
+  }
+  
+  .login .text-wrapper {
+    top: 587px;
+    left: 214px;
+    font-family: "Montserrat-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 15px;
+    white-space: nowrap;
+    position: absolute;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .login .text-wrapper-2 {
+    position: absolute;
+    width: 419px;
+    top: 266px;
+    left: 30px;
+    font-family: "Montserrat-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #033c57;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .login .text-wrapper-3 {
+    width: 419px;
+    top: 215px;
+    left: 30px;
+    opacity: 0.8;
+    font-family: "Iceland-Regular", Helvetica;
+    font-weight: 400;
+    color: #033c57cc;
+    font-size: 36px;
+    position: absolute;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .login .text-wrapper-4 {
+    position: absolute;
+    top: 340px;
+    left: 30px;
+    font-family: "Montserrat-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .login .text-wrapper-5 {
+    position: absolute;
+    top: 443px;
+    left: 30px;
+    font-family: "Montserrat-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .login .text-wrapper-6 {
+    position: absolute;
+    top: 526px;
+    left: 341px;
+    font-family: "Montserrat-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .login .text-wrapper-7 {
+    top: 379px;
+    position: absolute;
+    left: 45px;
+    font-family: "Montserrat-Light", Helvetica;
+    font-weight: 300;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .login .text-wrapper-8 {
+    top: 482px;
+    position: absolute;
+    left: 45px;
+    font-family: "Montserrat-Light", Helvetica;
+    font-weight: 300;
+    color: #ffffff;
+    font-size: 15px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .login .line {
+    position: absolute;
+    width: 110px;
+    height: 1px;
+    top: 256px;
+    left: 30px;
+    object-fit: cover;
+  }
+  
+  .login .ellipse-2 {
+    position: absolute;
+    width: 209px;
+    height: 209px;
+    top: 562px;
+    left: 529px;
+    border-radius: 104.5px;
+    border: 1px solid;
+    border-color: #033c57;
+    opacity: 0.8;
+  }
+  
+  .login .overlap {
+    position: absolute;
+    width: 674px;
+    height: 618px;
+    top: -61px;
+    left: -85px;
+  }
+  
+  .login .ellipse-3 {
+    position: absolute;
+    width: 122px;
+    height: 122px;
+    top: 0;
+    left: 507px;
+    background-color: #033c57;
+    border-radius: 61px;
+    opacity: 0.8;
+  }
+  
+  .login .overlap-2 {
+    position: absolute;
+    width: 674px;
+    height: 600px;
+    top: 18px;
+    left: 0;
+  }
+  
+  .login .ellipse-4 {
+    position: absolute;
+    width: 278px;
+    height: 170px;
+    top: 19px;
+    left: 11px;
+    border-radius: 138.91px/85.15px;
+    border: 1px solid;
+    border-color: #033c57;
+    transform: rotate(-8.06deg);
+    opacity: 0.8;
+  }
+  
+  .login .image {
+    position: absolute;
+    width: 525px;
+    height: 475px;
+    top: 125px;
+    left: 149px;
+    object-fit: cover;
+  }
+  
+  .login .image-cvcvord {
+    position: absolute;
+    width: 124px;
+    height: 107px;
+    top: 51px;
+    left: 107px;
+    object-fit: cover;
+  }
+  
