@@ -1,39 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="globals.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== REMIXICONS ===============-->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!--=============== CSS ===============-->
     <link rel="stylesheet" href="assets/css/style.css" />
+
+    <title>Responsive login form</title>
   </head>
   <body>
-    <div class="login">
-      <div class="div">
-        <div class="overlap-group">
-          <div class="ellipse"></div>
-          <div class="card"></div>
-          <div class="card-2"></div>
-          <div class="card-3"></div>
-          <div class="card-4"></div>
-          <div class="text-wrapper">LOGIN</div>
-          <div class="text-wrapper-2">Welcome back!</div>
-          <div class="text-wrapper-3">Login</div>
-          <div class="text-wrapper-4">Username</div>
-          <div class="text-wrapper-5">Password</div>
-          <div class="text-wrapper-6">Forgot Password?</div>
-          <div class="text-wrapper-7">Enter your username</div>
-          <div class="text-wrapper-8">Enter your password</div>
-          <img class="line" src="img/line-1.svg" />
-        </div>
-        <div class="ellipse-2"></div>
-        <div class="overlap">
-          <div class="ellipse-3"></div>
-          <div class="overlap-2">
-            <div class="ellipse-4"></div>
-            <img class="image" src="assets/images/delivery.png" />
-            <img class="image-cvcvord" src="assets/images/logo.png" />
-          </div>
+    <div class="container">
+      <div class="login">
+        <div class="login__content">
+
+          <form class="login__form">
+            <div>
+              <h1 class="login__title">Masuk</h1>
+              <p class="login__description">
+                <b>Selamat datang kembali, silahkan masuk</b>
+              </p>
+            </div>
+
+            <div>
+              <div class="login__inputs">
+                <div>
+                  <label for="email" class="login__label">Username</label>
+                  <input class="login__input" type="text" id="username" placeholder="Masukkan username anda" required />
+                </div>
+
+                <div>
+                  <label for="password" class="login__label">Password</label>
+                  <div class="login__box">
+                    <input class="login__input" type="password" id="password" placeholder="Masukkan password anda" required />
+                    <i class="ri-eye-off-line login__eye" id="input-icon"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="login__forgot">
+                <a class="login__forgot" href="#">Lupa Password?</a>
+              </div>
+            </div>
+
+            <div>
+              <div class="login__buttons">
+                <button class="login__button">Masuk</button>
+              </div>
+
+            </div>
+          </form>
         </div>
       </div>
     </div>
+
+  <!--=============== MAIN JS ===============-->
+  <script src="./assets/js/main.js"></script>
   </body>
 </html>
