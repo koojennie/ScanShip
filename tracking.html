@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ScanShip - Lacak Paket</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/tracking.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="./assets/images/logo.png" width="40" height="40" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="tracking.html">Lacak Paket</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cek-biaya.html">Cek Biaya</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://instagram.com/ka01dump">Hubungi Kami</a>
+                    </li>
+                </ul>
+                <a href="login.html" class="btn btn-brand ms-lg-3">Masuk</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION -->
+    <section id="main" class="flex">
+        <h2><b>Cek Resi</b></h2>
+        <p>
+          Anda dapat lacak/cek resi paket pengiriman barang yang dikirim melalui kurir kami. Hasil Cepat, Status Akurat & Terlengkap
+        </p>
+        <div id="container-resi" class="resi">
+          <div class="form-container">
+            <form action="" method="get">
+              <ul>
+                <li>
+                  <label for="resi">Nomor Resi</label>
+                  <input
+                    type="text"
+                    id="resi"
+                    name="resi"
+                    maxlength="17"
+                    placeholder="Masukkan nomor resi"
+                    pattern="[A-Za-z0-9]+"
+                    required
+                  />
+                </li>
+                <button class="btn btn-more track" type="submit">
+                  <i
+                    class="fa-regular fa-magnifying-glass"
+                    style="font-weight: 900"
+                  ></i>
+                  Cari Lokasi
+                </button>
+              </ul>
+            </form>
+          </div>
+          <div class="detail-container">
+            <h3 class="title-section"><span>Lacak</span> Pengiriman</h3>
+            <div class="body-card flex">
+              <div id="summary" class="display-false"></div>
+              <div class="flex info-card">
+                <img src="assets/images/delivery.png" alt="gambar" />
+                <p>Silahkan isi form untuk lacak pengiriman</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="container-fill" class="display-false">
+          <h3 class="title-section"><span>Lihat</span> Lokasi Paket</h3>
+          <div class="progress-history"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-5">
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="#"><img src="./assets/images/logo-light.png" width="70" height="70" alt=""></a>
+                        <div class="line"></div>
+                        <p>Solusi pengiriman Anda</p>
+                        <div class="social-icons">
+                            <a href="https://instagram.com/ka01dump"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="mailto:2326ka01@gmail.com"><i class="fa-solid fa-mailbox"></i></a>
+                            <a href="https://x.com/gunadarma_"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://www.tiktok.com/@univgunadarma"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class="mb-0 text-white">Jasa</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li><a href="tracking.html">Lacak Paket</a></li>
+                            <li><a href="cek-biaya.html">Cek Biaya</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class="mb-0 text-white">Tentang</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li><a href="#about">ScanShip</a></li>
+                            <li><a href="#services">Mengapa ScanShip?</a></li>
+                            <li><a href="#reviews">Ulasan</a></li>
+                            <li><a href="#faqs">Pertanyaan</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class="mb-0 text-white">Kontak</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li>Jl. Margonda Raya 100 - Depok</li>
+                            <li>(021) 29428935</li>
+                            <li>2326ka01@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row g-4 justify-content-between">
+                    <div class="col-auto">
+                        <p class="mb-0">© Copyright ScanShip. All Rights Reserved</p>
+                    </div>
+                    <div class="col-auto">
+                        <p class="mb-0">Designed with 💙 By Kelompok 2</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/kurir.js"></script>
+    <script src="assets/js/resi.js"></script>
+</body>
+
+</html>

@@ -34,9 +34,8 @@
 }
 
 body {
-  background-color: #cadee3;
-  font-family: var(--body-font);
-  color: var(--text-color);
+  background-color: #cadee3 !important;
+  font-family: var(--body-font) !important;
 }
 
 input,
@@ -283,23 +282,3 @@ img {
   }
 
 }
-
-/*=============== RESPONSIVE IMG ===============*/
-  @media (max-width: 768px) {
-    /* .custom-img {
-      width: 120px;
-      display: flex;
-      align-items: center;
-    } */
-    .custom-logo {
-      width: 120px;
-    }
-  }
-  @media (min-width: 768px) {
-    .custom-img {
-      width: 525px;
-    }
-    .custom-logo {
-      width: 124px;
-    }
-  }
