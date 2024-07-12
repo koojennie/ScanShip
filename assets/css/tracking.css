@@ -417,4 +417,12 @@ h3.title-section::before {
       margin: 20px 0;
     }
   }
+
+  .fa-solid {
+    color: #c4c5c6;
+  }
+
+  .fa-solid:hover {
+    color: #ffffff;
+  }
   

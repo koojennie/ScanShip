@@ -1,0 +1,90 @@
+body {
+    background-color: #cadee3;
+}
+
+.card {
+    width: 100%;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #93b5bf;
+    border-color: #033C57;
+}
+
+.btn.cek {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.btn.cek:click {
+    background-color: #6a96ab;
+    border-color: #6a96ab;
+}
+
+.fa-solid {
+    color: #c4c5c6;
+}
+
+.fa-solid:hover {
+    color: #ffffff;
+}
+
+.fa-location-dot {
+    color: #033C57;
+}
+
+.fa-weight-scale {
+    color: #033C57;
+}
+
+.form-group {
+    margin: 10px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    padding-left: 40px; /* Adjust padding to make space for the icon */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.table thead th {
+    background-color: #033C57;
+    color: white;
+    font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tbody {
+    background-color: #ffffff;
+}
