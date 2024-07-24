@@ -71,13 +71,13 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a href="paket.html">
                                 <i class="fas fa-box"></i>
                                 <p>Paket</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a href="formwa.html">
                                 <i class="fab fa-whatsapp"></i>
                                 <p>Form WhatsApp</p>
@@ -173,95 +173,84 @@
                 <div class="page-inner">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                         <div>
-                            <h3 class="fw-bold mb-3">Paket</h3>
-                            <h6 class="op-7 mb-2">Manajemen paket ScanShip</h6>
+                            <h3 class="fw-bold mb-3">Form WhatsApp</h3>
+                            <h6 class="op-7 mb-2">Untuk mengirim pesan WhatsApp ke penerima paket</h6>
                         </div>
                     </div>
+            
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Tabel Paket</h4>
-                                    <div class="d-flex justify-content-end">
-                                        <a href="addpaket.html" class="btn btn-primary">Tambah Paket</a>
-                                    </div>
+                                    <div class="card-title">Form Pesan ke Chat WA</div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table id="katalog-datatables" class="display table table-striped table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>No Resi</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Nama Penerima</th>
-                                                    <th>No Telp Penerima</th>
-                                                    <th>Alamat Tujuan</th>
-                                                    <th>Status</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                        <td>dari database</td>
-                                                        <td>dari database</td>
-                                                        <td>dari database</td>
-                                                        <td>dari database</td>
-                                                        <td>dari database</td>
-                                                        <td>dari database</td>
-                                                        <td>
-                                                            <a href="editpaket.html"
-                                                                class="btn btn-sm btn-warning btn-round"><i class="fas fa-edit"
-                                                                    aria-hidden="true"></i></a>
-                                                            <button class="btn btn-sm btn-danger btn-round delete-button"
-                                                                data-id="no_resi" data-type="paket"><i
-                                                                    class="fa fa-trash"></i></button>
-                                                        </td>
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    <form id="waForm" onsubmit="sendMessage(event)">
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <div class="form-group">
+                                                    <label for="no_telp">No Telp Penerima</label>
+                                                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Enter Phone Number" required/>
+                                                    <small>Jika diisi, pastikan No HP dapat menerima pesan WA</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pesan">Pesan</label>
+                                                    <textarea class="form-control" id="pesan" name="pesan" rows="5" placeholder="Enter Your Message Here..." required>
+*ScanShip*
+*Status:* Sedang diambil oleh ... / Dalam pengiriman / Sudah sampai
+*LastInfo:* [... Hub] Paket Anda Sedang [Nama Penerima] (Status)</textarea>
+                                                    <small>Jika diisi, gunakan tanda <b>bintang (*)</b> untuk menjadikan teks menjadi tebal.</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                            </div>
+                                            <div class="col-lg-12 pt-5">
+                                                <button class="btn btn-primary" type="submit">SEND</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!--   Core JS Files   -->
-    <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+        function sendMessage(event) {
+            event.preventDefault();
+
+            var noTelp = document.getElementById("no_telp").value;
+            var pesan = document.getElementById("pesan").value;
+
+            // Convert to international format
+            if (noTelp.startsWith("0")) {
+                noTelp = "62" + noTelp.slice(1);
+            }
+
+            var url = "https://api.whatsapp.com/send?phone=" + encodeURIComponent(noTelp) + "&text=" + encodeURIComponent(pesan);
+
+            window.open(url, "_blank");
+        }
+    </script>
+
+    <script src="../assets/admin/js/core/jquery.3.2.1.min.js"></script>
     <script src="../assets/admin/js/core/popper.min.js"></script>
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>
-
-    <!-- jQuery Scrollbar -->
     <script src="../assets/admin/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-
-    <!-- Chart JS -->
     <script src="../assets/admin/js/plugin/chart.js/chart.min.js"></script>
-
-    <!-- jQuery Sparkline -->
     <script src="../assets/admin/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
-
-    <!-- Chart Circle -->
     <script src="../assets/admin/js/plugin/chart-circle/circles.min.js"></script>
-
-    <!-- Datatables -->
     <script src="../assets/admin/js/plugin/datatables/datatables.min.js"></script>
-
-    <!-- jQuery Vector Maps -->
     <script src="../assets/admin/js/plugin/jsvectormap/jsvectormap.min.js"></script>
     <script src="../assets/admin/js/plugin/jsvectormap/world.js"></script>
-
-    <!-- Sweet Alert -->
     <script src="../assets/admin/js/plugin/sweetalert/sweetalert.min.js"></script>
-
-    <!-- Kaiadmin JS -->
     <script src="../assets/admin/js/kaiadmin.min.js"></script>
-
-    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
     <script src="../assets/admin/js/setting-demo.js"></script>
     <script src="../assets/admin/js/demo.js"></script>
+
     <script>
         $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
             type: "line",
@@ -289,44 +278,6 @@
             lineColor: "#ffa534",
             fillColor: "rgba(255, 165, 52, .14)",
         });
-    </script>
-    <!-- Code injected by live-server -->
-    <script>
-        // <![CDATA[  <-- For SVG support
-        if ('WebSocket' in window) {
-            (function () {
-                function refreshCSS() {
-                    var sheets = [].slice.call(document.getElementsByTagName("link"));
-                    var head = document.getElementsByTagName("head")[0];
-                    for (var i = 0; i < sheets.length; ++i) {
-                        var elem = sheets[i];
-                        var parent = elem.parentElement || head;
-                        parent.removeChild(elem);
-                        var rel = elem.rel;
-                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-                        }
-                        parent.appendChild(elem);
-                    }
-                }
-                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-                var address = protocol + window.location.host + window.location.pathname + '/ws';
-                var socket = new WebSocket(address);
-                socket.onmessage = function (msg) {
-                    if (msg.data == 'reload') window.location.reload();
-                    else if (msg.data == 'refreshcss') refreshCSS();
-                };
-                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-                    console.log('Live reload enabled.');
-                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-                }
-            })();
-        }
-        else {
-            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-        }
-        // ]]>
     </script>
 </body>
 
