@@ -26,6 +26,11 @@ h1, h2, h3,h4, h5, h6,
     color: var(--c-dark);
 }
 
+p {
+    color: var(--c-dark);
+    margin-bottom: 0;
+}
+
 a {
     text-decoration: none;
     color: var(--c-brand);
@@ -346,6 +351,7 @@ footer .line {
   }
   .form-container form {
     margin-top: 3rem;
+    margin-right: 30px;
   }
   .form-container form ul > li {
     display: flex;
@@ -425,6 +431,7 @@ footer .line {
   }
   #summary table > * {
     vertical-align: text-top;
+    color: #212529;
   }
   #summary table {
     width: 100%;
@@ -440,7 +447,7 @@ footer .line {
     border-radius: 12px;
     overflow: hidden;
     width: 95%;
-    color: var(--color-text);
+    color: #033C57;
     background-color: #fff;
     margin: 15px 0 0;
     padding: 1.5rem;
@@ -469,17 +476,17 @@ footer .line {
     width: 15px;
     height: 15px;
     border-radius: 100%;
-    background-color: var(--color-orange);
+    background-color: #6a96ab;
   }
   .progress-section > .radio::before {
     height: 9rem;
-    border-left: 2px solid #e9e9e9;
+    border-left: 2px solid #dad7d7;
   }
   .progress-section:first-child > .radio::after {
-    background-color: var(--color-red);
+    background-color: #033C57;
   }
   .progress-section:last-child > .radio::after {
-    background-color: rgb(18, 212, 99);
+    background-color: #033C57;
   }
   .progress-section:first-child > .radio::before {
     height: 5.5rem;
@@ -500,4 +507,8 @@ footer .line {
     .flex.info-card {
       margin: 20px 0;
     }
+  }
+
+  .display-false {
+    display: none;
   }

@@ -34,7 +34,7 @@ if (pageURL[1]) {
 // WARNING: For GET requests, body is set to null by browsers.
 function getJSON(url) {
   var xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
+  xhr.withCredentials = false;
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === 4) {
       let respon = JSON.parse(this.responseText).data;
