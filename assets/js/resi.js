@@ -11,7 +11,7 @@ let link = window.location.href,
     .sort();
 
 if (pageURL[1]) {
-  let token = "Yourtoken", // paste api key here
+  let token = "2095f0ac739b457093c0ab990711cd2395bb32d55d0c0ba536a55374118d71d4", // paste api key here
     courier = pageURL[0].split(/[=]+/)[1],
     awb = pageURL[1].split(/[=]+/)[1],
     urlApi = `https://api.binderbyte.com/v1/track?api_key=${token}&courier=${courier}&awb=${awb}`;
@@ -21,7 +21,7 @@ if (pageURL[1]) {
   if (awb) {
     inputResi.value = awb.replace(/[^\w]/gi, "").substring(0, 17);
     if (courier) {
-      optianExpedisi.value = 1;
+      optionExpedisi.value = 1;
       bodyCard.classList.remove("flex");
       history.classList.remove("display-false");
       summary.classList.remove("display-false");

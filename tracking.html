@@ -10,11 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/tracking.css">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target=".navbar">
+<body data-bs-spy="scroll" data-bs-target=".navbar" style="background-color: #CADEE3;">
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg bg-white sticky-top">
         <div class="container">
@@ -43,7 +42,7 @@
     </nav>
 
     <!-- SECTION -->
-    <section id="main" class="flex">
+    <section id="main" class="flex" style="padding: 20px 40px 10px;">
         <h2><b>Cek Resi</b></h2>
         <h6>
           Anda dapat lacak/cek resi paket pengiriman barang yang dikirim melalui kurir kami. Hasil Cepat, Status Akurat & Terlengkap
@@ -52,6 +51,12 @@
           <div class="form-container">
             <form action="" method="get">
               <ul>
+                <li>
+                    <label for="expedisi">Pilih expedisi</label>
+                    <select name="expedisi" id="expedisi">
+                      <option value="1" hidden>Pilih expedisi</option>
+                    </select>
+                </li>
                 <li>
                   <label for="resi">Nomor Resi</label>
                   <input
@@ -64,7 +69,7 @@
                     required
                   />
                 </li>
-                <button class="btn btn-more track" type="submit">
+                <button disabled class="btn btn-more track" type="submit">
                   <i
                     class="fa-regular fa-magnifying-glass"
                     style="font-weight: 900"
@@ -75,7 +80,7 @@
             </form>
           </div>
           <div class="detail-container">
-            <h3 class="title-section"><span>Lacak</span> Pengiriman</h3>
+            <h4 class="title-section"><span>Lacak</span> Pengiriman</h4>
             <div class="body-card flex">
               <div id="summary" class="display-false"></div>
               <div class="flex info-card">
@@ -86,7 +91,7 @@
           </div>
         </div>
         <div id="container-fill" class="display-false">
-          <h3 class="title-section"><span>Lihat</span> Lokasi Paket</h3>
+          <h5 class="title-section" style="text-align: left;"><span>Lihat</span> Lokasi Paket</h5>
           <div class="progress-history"></div>
         </div>
     </section>
