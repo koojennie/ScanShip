@@ -71,13 +71,13 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a href="paket.html">
                                 <i class="fas fa-box"></i>
                                 <p>Paket</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a href="kurir.html">
                                 <i class="fas fa-truck-loading"></i>
                                 <p>Kurir</p>
@@ -179,8 +179,8 @@
                 <div class="page-inner">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                         <div>
-                            <h3 class="fw-bold mb-3">Edit Paket</h3>
-                            <h6 class="op-7 mb-2">Manajemen paket ScanShip</h6>
+                            <h3 class="fw-bold mb-3">Add Kurir</h3>
+                            <h6 class="op-7 mb-2">Manajemen kurir ScanShip</h6>
                         </div>
                     </div>
             
@@ -188,44 +188,45 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title">Edit Paket</div>
+                                    <div class="card-title">Add Kurir</div>
                                 </div>
                                 <div class="card-body">
-                                    <form action="" id="edit-paket-form" method="post">
-                                        <input type="hidden" id="no-resi-edit" name="no-resi-edit" value="">
+                                    <form action="#" id="input-kurir-form" method="post">
                                         <div class="row">
-                                            <div class="col-lg-8">                              
+                                            <div class="col-lg-8">  
+                                                <!-- sementara -->
                                                 <div class="form-group">
-                                                    <label for="tanggal">Tanggal Pengiriman</label>
-                                                    <input type="text" class="form-control" id="tanggal-pengiriman-edit" name="tanggal-pengiriman-edit" placeholder="Enter Date" value="" required/>
+                                                    <label for="id-kurir">ID</label>
+                                                    <input type="text" class="form-control" id="id-kurir-input" name="id-kurir-input" placeholder="Masukkan ID" value="" required/>
+                                                </div>
+                                                <!-- end sementara -->
+                                                <div class="form-group">
+                                                    <label for="username-kurir">Username</label>
+                                                    <input type="text" class="form-control" id="username-kurir-input" name="username-kurir-input" placeholder="Masukkan username" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nama-pengirim">Nama Pengirim</label>
-                                                    <input type="text" class="form-control" id="nama-pengirim-edit" name="nama-pengirim-edit" placeholder="Enter Name" value="" required/>
+                                                    <label for="nama-kurir">Nama</label>
+                                                    <input type="text" class="form-control" id="nama-kurir-input" name="nama-kurir-input" placeholder="Masukkan nama" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="asal-pengirim-edit">Asal Pengirim</label>
-                                                    <input type="text" class="form-control" id="asal-pengirim-edit" name="asal-pengirim-edit" placeholder="Enter Address" value="" required/>
+                                                    <label for="pw-kurir">Password</label>
+                                                    <input type="password" class="form-control" id="pw-kurir-input" name="pw-kurir-input" placeholder="Masukkan password" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nama-penerima-edit">Nama Penerima</label>
-                                                    <input type="text" class="form-control" id="nama-penerima-edit" name="nama-penerima-edit" placeholder="Enter Name" value="" required/>
+                                                    <label for="email-kurir">Email</label>
+                                                    <input type="text" class="form-control" id="email-kurir-input" name="email-kurir-input" placeholder="Masukkan email" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="no_telp">No Telp Penerima</label>
-                                                    <input type="text" class="form-control" id="notelp-penerima-edit" name="notelp-penerima-edit" placeholder="Enter Phone Number" value="" required/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="tujuan-edit">Alamat Tujuan</label>
-                                                    <input type="text" class="form-control" id="tujuan-edit" name="tujuan-edit" placeholder="Enter Full Address" value="" required/>
+                                                    <label for="notelp-kurir">No Telepon</label>
+                                                    <input type="text" class="form-control" id="notelp-kurir-input" name="notelp-kurir-input" placeholder="Masukkan nomor telepon" value="" required/>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <!-- Kosong untuk tampilan responsif -->
                                             </div>
                                             <div class="col-lg-12 pt-5">
-                                                <a href="paket.html" class="btn btn-secondary">BACK</a>
-                                                <button type="submit" class="btn btn-primary">UPDATE</button>
+                                                <a href="kurir.html" class="btn btn-secondary">BACK</a>
+                                                <button type="submit" class="btn btn-primary">SUBMIT</button>
                                             </div>
                                         </div>
                                     </form>
@@ -238,39 +239,35 @@
 
         </div>
     </div>
+
     <!--   Core JS Files   -->
+
     <script src="js/fetchapi.js"></script>
-
     <script>
-        // Ambil no_resi dari query string atau URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const noResi = urlParams.get('no_resi');
+        document.getElementById('input-kurir-form').addEventListener('submit', async function(event){
+            event.preventDefault();
+            
+            const kurirData = {
+                id_kurir: document.getElementById('id-kurir-input').value,
+                usn_kurir: document.getElementById('username-kurir-input').value,
+                nama_kurir: document.getElementById("nama-kurir-input").value,
+                pw_kurir: document.getElementById("pw-kurir-input").value,
+                email_kurir: document.getElementById("email-kurir-input").value,
+                notelp_kurir: document.getElementById("notelp-kurir-input").value,
+            }
 
-        if(noResi) {
-            getPaketDetailForEdit(noResi);
+             // Lakukan validasi data
+            // if (!paketData.no_resi || !paketData.tanggal || !paketData.nama_pengirim || !paketData.nama_penerima) {
+            //     alert("Mohon isi semua data yang diperlukan.");
+            //     return;
+            // }
 
-            document.getElementById('edit-paket-form').addEventListener('submit', async function(event){
-                event.preventDefault();
+            await handlePostKurir(kurirData);
 
-            const updatePaket = {
-                tanggal_pengiriman: document.getElementById("tanggal-pengiriman-edit").value,
-                nama_pengirim: document.getElementById("nama-pengirim-edit").value,
-                asal_pengirim: document.getElementById("asal-pengirim-edit").value,
-                nama_penerima: document.getElementById("nama-penerima-edit").value,
-                notelp_penerima: document.getElementById("notelp-penerima-edit").value,
-                alamat_tujuan: document.getElementById("tujuan-edit").value,
-             };
-
-            const no_resi = document.getElementById("no-resi-edit").value;
-
-            handleUpdatePaket(updatePaket, no_resi);
-
-            })
-
-        }
+            
+        })
     </script>
 
-    <!--   Core JS Files   -->
     <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>
     <script src="../assets/admin/js/core/popper.min.js"></script>
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>
@@ -330,7 +327,8 @@
             lineColor: "#ffa534",
             fillColor: "rgba(255, 165, 52, .14)",
         });
-    </script> 
+    </script>
+    
 </body>
 
 </html>

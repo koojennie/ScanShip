@@ -71,13 +71,13 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a href="paket.html">
                                 <i class="fas fa-box"></i>
                                 <p>Paket</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a href="kurir.html">
                                 <i class="fas fa-truck-loading"></i>
                                 <p>Kurir</p>
@@ -179,8 +179,8 @@
                 <div class="page-inner">
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                         <div>
-                            <h3 class="fw-bold mb-3">Edit Paket</h3>
-                            <h6 class="op-7 mb-2">Manajemen paket ScanShip</h6>
+                            <h3 class="fw-bold mb-3">Edit Kurir</h3>
+                            <h6 class="op-7 mb-2">Manajemen kurir ScanShip</h6>
                         </div>
                     </div>
             
@@ -188,31 +188,32 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <div class="card-title">Edit Paket</div>
+                                    <div class="card-title">Edit Kurir</div>
                                 </div>
                                 <div class="card-body">
-                                    <form action="" id="edit-paket-form" method="post">
-                                        <input type="hidden" id="no-resi-edit" name="no-resi-edit" value="">
+                                    <form action="" id="edit-kurir-form" method="post">
+                                        <input type="hidden" id="id-kurir-edit" name="id-kurir-edit" value="">
                                         <div class="row">
                                             <div class="col-lg-8">                              
                                                 <div class="form-group">
-                                                    <label for="tanggal">Tanggal Pengiriman</label>
-                                                    <input type="text" class="form-control" id="tanggal-pengiriman-edit" name="tanggal-pengiriman-edit" placeholder="Enter Date" value="" required/>
+                                                    <label for="id-kurir">ID</label>
+                                                    <input type="text" class="form-control" id="id-kurir-edit" name="id-kurir-edit" placeholder="Masukkan ID" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nama-pengirim">Nama Pengirim</label>
+                                                    <!-- disini masih belum -->
+                                                    <label for="username">Username</label>
                                                     <input type="text" class="form-control" id="nama-pengirim-edit" name="nama-pengirim-edit" placeholder="Enter Name" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="asal-pengirim-edit">Asal Pengirim</label>
+                                                    <label for="asal-pengirim-edit">Nama</label>
                                                     <input type="text" class="form-control" id="asal-pengirim-edit" name="asal-pengirim-edit" placeholder="Enter Address" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nama-penerima-edit">Nama Penerima</label>
+                                                    <label for="nama-penerima-edit">Password</label>
                                                     <input type="text" class="form-control" id="nama-penerima-edit" name="nama-penerima-edit" placeholder="Enter Name" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="no_telp">No Telp Penerima</label>
+                                                    <label for="no_telp">Email</label>
                                                     <input type="text" class="form-control" id="notelp-penerima-edit" name="notelp-penerima-edit" placeholder="Enter Phone Number" value="" required/>
                                                 </div>
                                                 <div class="form-group">
