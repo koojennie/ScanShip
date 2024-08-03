@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Aug 03, 2024 at 04:39 AM
+-- Generation Time: Aug 03, 2024 at 07:08 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -50,15 +50,18 @@ CREATE TABLE `kurir` (
   `id_kurir` varchar(6) NOT NULL,
   `usn_kurir` varchar(20) NOT NULL,
   `nama_kurir` varchar(20) NOT NULL,
-  `pw_kurir` varchar(256) NOT NULL
+  `pw_kurir` varchar(256) NOT NULL,
+  `email_kurir` varchar(100) NOT NULL,
+  `notelp_kurir` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kurir`
 --
 
-INSERT INTO `kurir` (`id_kurir`, `usn_kurir`, `nama_kurir`, `pw_kurir`) VALUES
-('KR001', 'aanrach', 'Aan Rahmat', '$2y$10$J.BSyZwCH2qxpIT6d4dZV.9JipnXINkoZ772t30GbCRngbRCcS1Du');
+INSERT INTO `kurir` (`id_kurir`, `usn_kurir`, `nama_kurir`, `pw_kurir`, `email_kurir`, `notelp_kurir`) VALUES
+('KR001', 'aanrach', 'Aan Rahmat', '$2y$10$J.BSyZwCH2qxpIT6d4dZV.9JipnXINkoZ772t30GbCRngbRCcS1Du', 'aankurirscanship@gmail.com', '0812151617'),
+('KR002', 'asepkur', 'Asep', '$2y$10$/b7khRPA85/Xjmyj5Jm6Je6etFoTu5qW4BvGj9lpL9ZOpcVEAZ60i', 'asepkurirscanship@gmail.com', '0855789654');
 
 -- --------------------------------------------------------
 
