@@ -185,40 +185,46 @@
                                     <div class="card-title">Add Paket</div>
                                 </div>
                                 <div class="card-body">
-                                    <form action="action/insertpaketaction.html" method="POST" enctype="multipart/form-data">
-                                        <input type="hidden" name="no_resi" value="dari database">
+                                    <form action="#" id="input-paket-form" method="post">
                                         <div class="row">
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-8">  
+                                                <!-- sementara -->
+                                                <div class="form-group">
+                                                    <label for="no_resi">no_resi Pengiriman</label>
+                                                    <input type="text" class="form-control" id="no_resi-pengiriman-input" name="no_resi-pengiriman-input" placeholder="Enter Date" value="" required/>
+                                                </div>
+                                                <!-- end sementara -->
                                                 <div class="form-group">
                                                     <label for="tanggal">Tanggal Pengiriman</label>
-                                                    <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="Enter Date" value="" required/>
+                                                    <input type="text" class="form-control" id="tanggal-pengiriman-input" name="tanggal-pengiriman-input" placeholder="Enter Date" value="" required/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nama-pengirim">Nama Pengirim</label>
-                                                    <input type="text" class="form-control" id="nama-pengirim" name="nama-pengirim" placeholder="Enter Name" value="" required/>
+                                                    <input type="text" class="form-control" id="nama-pengirim-input" name="nama-pengirim-input" placeholder="Enter Name" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="asal-pengirim">Asal Pengirim</label>
-                                                    <input type="text" class="form-control" id="asal-pengirim" name="asal-pengirim" placeholder="Enter Address" value="" required/>
+                                                    <label for="asal-pengirim-input">Asal Pengirim</label>
+                                                    <input type="text" class="form-control" id="asal-pengirim-input" name="asal-pengirim-input" placeholder="Enter Address" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nama-penerima">Nama Penerima</label>
-                                                    <input type="text" class="form-control" id="nama-penerima" name="nama-penerima" placeholder="Enter Name" value="" required/>
+                                                    <label for="nama-penerima-input">Nama Penerima</label>
+                                                    <input type="text" class="form-control" id="nama-penerima-input" name="nama-penerima-input" placeholder="Enter Name" value="" required/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="no_telp">No Telp Penerima</label>
-                                                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Enter Phone Number" value="" required/>
+                                                    <input type="text" class="form-control" id="notelp-penerima-input" name="notelp-penerima-input" placeholder="Enter Phone Number" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="tujuan">Alamat Tujuan</label>
-                                                    <input type="text" class="form-control" id="tujuan" name="tujuan" placeholder="Enter Full Address" value="" required/>
+                                                    <label for="tujuan-input">Alamat Tujuan</label>
+                                                    <input type="text" class="form-control" id="tujuan-input" name="tujuan-input" placeholder="Enter Full Address" value="" required/>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
+                                                <!-- Kosong untuk tampilan responsif -->
                                             </div>
                                             <div class="col-lg-12 pt-5">
                                                 <a href="paket.html" class="btn btn-secondary">BACK</a>
-                                                <button class="btn btn-primary" type="submit">SUBMIT</button>
+                                                <button type="submit" class="btn btn-primary">SUBMIT</button>
                                             </div>
                                         </div>
                                     </form>
@@ -233,6 +239,34 @@
     </div>
 
     <!--   Core JS Files   -->
+
+    <script src="js/fetchapi.js"></script>
+    <script>
+        document.getElementById('input-paket-form').addEventListener('submit', async function(event){
+            event.preventDefault();
+            
+            const paketData = {
+                no_resi: document.getElementById('no_resi-pengiriman-input').value,
+                tanggal_pengiriman: document.getElementById('tanggal-pengiriman-input').value,
+                nama_pengirim: document.getElementById("nama-pengirim-input").value,
+                asal_pengirim: document.getElementById("asal-pengirim-input").value,
+                nama_penerima: document.getElementById("nama-penerima-input").value,
+                notelp_penerima: document.getElementById("notelp-penerima-input").value,
+                alamat_tujuan: document.getElementById("tujuan-input").value,
+            }
+
+             // Lakukan validasi data
+            // if (!paketData.no_resi || !paketData.tanggal || !paketData.nama_pengirim || !paketData.nama_penerima) {
+            //     alert("Mohon isi semua data yang diperlukan.");
+            //     return;
+            // }
+
+            await handlePostPaket(paketData);
+
+            
+        })
+    </script>
+
     <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>
     <script src="../assets/admin/js/core/popper.min.js"></script>
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>
