@@ -62,14 +62,16 @@
 
       const data = result.data;
 
+      // console.log("ini data dari get", data);
+
       // Isi form dengan data yang diambil
-      document.getElementById("no-resi-edit").value = data.no_resi;
-      document.getElementById("tanggal-pengiriman-edit").value = data.tanggal_pengiriman;
-      document.getElementById("nama-pengirim-edit").value = data.nama_pengirim;
-      document.getElementById("asal-pengirim-edit").value = data.asal_pengirim;
-      document.getElementById("nama-penerima-edit").value = data.nama_penerima;
-      document.getElementById("notelp-penerima-edit").value = data.notelp_penerima;
-      document.getElementById("tujuan-edit").value = data.alamat_tujuan;
+      document.getElementById("no-resi-edit").value = data.package.no_resi;
+      document.getElementById("tanggal-pengiriman-edit").value = data.package.tanggal_pengiriman;
+      document.getElementById("nama-pengirim-edit").value = data.package.nama_pengirim;
+      document.getElementById("asal-pengirim-edit").value = data.package.asal_pengirim;
+      document.getElementById("nama-penerima-edit").value = data.package.nama_penerima;
+      document.getElementById("notelp-penerima-edit").value = data.package.notelp_penerima;
+      document.getElementById("tujuan-edit").value = data.package.alamat_tujuan;
     } catch (error) {
       console.error("Error fetching paket details:", error);
     }
@@ -87,7 +89,7 @@
 
       const data = result.data;
 
-      if(data || data.length === 0){
+      if(!data || data.length === 0){
         console.log(`No data found for no_resi${noResi}`)
         return null;
       }
