@@ -127,7 +127,7 @@
       console.log('Paket berhasil ditambahkan:', data);
 
       // Tampilkan pesan sukses atau redirect ke halaman lain
-      window.href.location = "paket.html"
+      window.location.href = "paket.html"
 
     } catch(error){
       console.error("Error insert paket: ", error);
