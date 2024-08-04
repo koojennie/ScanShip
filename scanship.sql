@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Aug 03, 2024 at 07:08 PM
+-- Generation Time: Aug 04, 2024 at 07:04 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -61,7 +61,7 @@ CREATE TABLE `kurir` (
 
 INSERT INTO `kurir` (`id_kurir`, `usn_kurir`, `nama_kurir`, `pw_kurir`, `email_kurir`, `notelp_kurir`) VALUES
 ('KR001', 'aanrach', 'Aan Rahmat', '$2y$10$J.BSyZwCH2qxpIT6d4dZV.9JipnXINkoZ772t30GbCRngbRCcS1Du', 'aankurirscanship@gmail.com', '0812151617'),
-('KR002', 'asepkur', 'Asep', '$2y$10$/b7khRPA85/Xjmyj5Jm6Je6etFoTu5qW4BvGj9lpL9ZOpcVEAZ60i', 'asepkurirscanship@gmail.com', '0855789654');
+('KR002', 'asepkurr', 'Asep', '$2y$10$fMGyI.YNHDkeD1YUO9E6..Mf8A94SBUQAxAB4UI4wgaLUGGohhm.u', 'asepkurirscanship@gmail.com', '0855789654');
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,7 @@ CREATE TABLE `paket` (
 --
 
 INSERT INTO `paket` (`no_resi`, `tanggal_pengiriman`, `nama_pengirim`, `asal_pengirim`, `nama_penerima`, `notelp_penerima`, `alamat_tujuan`, `tanggal_penerimaan`) VALUES
-('SCS0000000001', '2024-07-24', 'Alia', 'Tangerang', 'Dilla', '0812136579', 'Jl. Teratai Raya No. 88, RT 001/RW 002, Sukmajaya, Mekarjaya, Depok', '2024-07-26'),
+('SCS0000000001', '2024-07-24', 'Alia', 'Tangerang', 'Dilla', '0812136579', 'Jl. Teratai Raya No. 88, RT 001/RW 002', '2024-07-26'),
 ('SCS0000000002', '2024-07-30', 'Dinda', 'Bandung', 'Fayza', '0821242526', 'Jl. Kp. Taman No. 3, Depok 2', '2024-07-31');
 
 -- --------------------------------------------------------
@@ -107,7 +107,8 @@ CREATE TABLE `statuspaket` (
 
 INSERT INTO `statuspaket` (`id_status`, `status_tanggal`, `status_lokasi`, `no_resi`) VALUES
 (1, '2024-07-30 14:29:27', 'Paket sudah diterima oleh kurir', 'SCS0000000001'),
-(2, '2024-07-28 18:00:00', 'Paket sudah diterima oleh pelanggan', 'SCS0000000002');
+(2, '2024-07-28 18:00:00', 'Paket sudah diterima oleh pelanggan', 'SCS0000000002'),
+(3, '2024-08-04 22:54:20', 'Paket sudah ada dihatimu', 'SCS0000000001');
 
 --
 -- Indexes for dumped tables
@@ -146,7 +147,7 @@ ALTER TABLE `statuspaket`
 -- AUTO_INCREMENT for table `statuspaket`
 --
 ALTER TABLE `statuspaket`
-  MODIFY `id_status` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_status` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

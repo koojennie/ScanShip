@@ -25,14 +25,6 @@ body {
     border-color: #6a96ab;
 }
 
-.fa-solid {
-    color: #c4c5c6;
-}
-
-.fa-solid:hover {
-    color: #ffffff;
-}
-
 .fa-location-dot {
     color: #033C57;
 }
@@ -63,8 +55,13 @@ body {
     padding-left: 40px; /* Adjust padding to make space for the icon */
 }
 
+#resultTable {
+    display: none; /* Hide the table initially */
+}
+
 .table {
-    width: 100%;
+    margin: 0 auto;
+    width: 70%;
     border-collapse: collapse;
     margin-top: 20px;
     margin-bottom: 50px;
