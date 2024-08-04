@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Admin - ScanShip</title>
-    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-    <link rel="icon" href="../assets/admin/img/favicon.ico" type="image/x-icon" />
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link
+      rel="icon"
+      href="../assets/admin/img/favicon.ico"
+      type="image/x-icon"
+    />
 
     <!-- Fonts and icons -->
     <script src="../assets/admin/js/plugin/webfont/webfont.min.js"></script>
     <script>
-        WebFont.load({
-            google: { families: ["Public Sans:300,400,500,600,700"] },
-            custom: {
-                families: [
-                    "Font Awesome 5 Solid",
-                    "Font Awesome 5 Regular",
-                    "Font Awesome 5 Brands",
-                    "simple-line-icons",
-                ],
-                urls: ["../assets/admin/css/fonts.min.css"],
-            },
-            active: function () {
-                sessionStorage.fonts = true;
-            },
-        });
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["../assets/admin/css/fonts.min.css"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
     </script>
 
     <!-- CSS Files -->
@@ -34,251 +40,319 @@
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="../assets/admin/css/demo.css" />
-</head>
+  </head>
 
-<body>
-    
+  <body>
     <div class="wrapper">
-        <!-- Sidebar -->
-        <div class="sidebar" data-background-color="dark">
-            <div class="sidebar-logo">
-                <!-- Logo Header -->
-                <div class="logo-header" data-background-color="dark">
-                    <a href="home.html" class="logo">
-                        <img src="../assets/admin/img/logo-light.png" alt="navbar brand" class="navbar-brand"
-                            height="20" />
-                    </a>
-                    <div class="nav-toggle">
-                        <button class="btn btn-toggle toggle-sidebar">
-                            <i class="gg-menu-right"></i>
-                        </button>
-                        <button class="btn btn-toggle sidenav-toggler">
-                            <i class="gg-menu-left"></i>
-                        </button>
-                    </div>
-                    <button class="topbar-toggler more">
-                        <i class="gg-more-vertical-alt"></i>
-                    </button>
-                </div>
-                <!-- End Logo Header -->
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a href="home.html" class="logo">
+              <img
+                src="../assets/admin/img/logo-light.png"
+                alt="navbar brand"
+                class="navbar-brand"
+                height="20"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
             </div>
-            <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                <div class="sidebar-content">
-                    <ul class="nav nav-secondary">
-                        <li class="nav-item">
-                            <a href="home.html" class="collapsed">
-                                <i class="fas fa-home"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="paket.html">
-                                <i class="fas fa-box"></i>
-                                <p>Paket</p>
-                            </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a href="formwa.html">
-                                <i class="fab fa-whatsapp"></i>
-                                <p>Form WhatsApp</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- End Logo Header -->
         </div>
-        <!-- End Sidebar -->
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item">
+                <a href="home.html" class="collapsed">
+                  <i class="fas fa-home"></i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="paket.html">
+                  <i class="fas fa-box"></i>
+                  <p>Paket</p>
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a href="formwa.html">
+                  <i class="fab fa-whatsapp"></i>
+                  <p>Form WhatsApp</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- End Sidebar -->
 
-        <div class="main-panel">
-            <div class="main-header">
-                <div class="main-header-logo">
-                    <!-- Logo Header -->
-                    <div class="logo-header" data-background-color="dark">
-                        <a href="home.html" class="logo">
-                            <img src="../assets/admin/img/logo-light.png" alt="navbar brand"
-                                class="navbar-brand" height="20" />
-                        </a>
-                        <div class="nav-toggle">
-                            <button class="btn btn-toggle toggle-sidebar">
-                                <i class="gg-menu-right"></i>
-                            </button>
-                            <button class="btn btn-toggle sidenav-toggler">
-                                <i class="gg-menu-left"></i>
-                            </button>
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+              <a href="home.html" class="logo">
+                <img
+                  src="../assets/admin/img/logo-light.png"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                  height="20"
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+            <div class="container-fluid">
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li
+                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
+                >
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          placeholder="Search ..."
+                          class="form-control"
+                        />
+                      </div>
+                    </form>
+                  </ul>
+                </li>
+
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <div class="avatar-sm">
+                      <img
+                        src="../assets/admin/img/profile-admin.png"
+                        alt="..."
+                        class="avatar-img rounded-circle"
+                      />
+                    </div>
+                    <span class="profile-username">
+                      <span class="op-7">Hi,</span>
+                      <span class="fw-bold">Admin</span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+                        <div class="user-box">
+                          <div class="avatar-lg">
+                            <img
+                              src="../assets/admin/img/profile-admin.png"
+                              alt="image profile"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                          <div class="u-text">
+                            <h4>Admin</h4>
+                            <p class="text-muted">admin@gmail.com</p>
+                          </div>
                         </div>
-                        <button class="topbar-toggler more">
-                            <i class="gg-more-vertical-alt"></i>
-                        </button>
+                      </li>
+                      <li>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" onclick="logout()" href="#">Logout</a>
+                      </li>
                     </div>
-                    <!-- End Logo Header -->
-                </div>
-                <!-- Navbar Header -->
-                <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
-                    <div class="container-fluid">
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <!-- End Navbar -->
+        </div>
 
-                        <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
-                            <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                    aria-expanded="false" aria-haspopup="true">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-search animated fadeIn">
-                                    <form class="navbar-left navbar-form nav-search">
-                                        <div class="input-group">
-                                            <input type="text" placeholder="Search ..." class="form-control" />
-                                        </div>
-                                    </form>
-                                </ul>
-
-                            <li class="nav-item topbar-user dropdown hidden-caret">
-                                <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
-                                    aria-expanded="false">
-                                    <div class="avatar-sm">
-                                        <img src="../assets/admin/img/profile-admin.png" alt="..."
-                                            class="avatar-img rounded-circle" />
-                                    </div>
-                                    <span class="profile-username">
-                                        <span class="op-7">Hi,</span>
-                                        <span class="fw-bold">Admin</span>
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user animated fadeIn">
-                                    <div class="dropdown-user-scroll scrollbar-outer">
-                                        <li>
-                                            <div class="user-box">
-                                                <div class="avatar-lg">
-                                                    <img src="../assets/admin/img/profile-admin.png" alt="image profile"
-                                                        class="avatar-img rounded-circle" />
-                                                </div>
-                                                <div class="u-text">
-                                                    <h4>Admin</h4>
-                                                    <p class="text-muted">admin@gmail.com</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="../logout.html">Logout</a>
-                                        </li>
-                                    </div>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <!-- End Navbar -->
+        <div class="container">
+          <div class="page-inner">
+            <div
+              class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
+            >
+              <div>
+                <h3 class="fw-bold mb-3">Form WhatsApp</h3>
+                <h6 class="op-7 mb-2">
+                  Untuk mengirim pesan WhatsApp ke penerima paket
+                </h6>
+              </div>
             </div>
 
-            <div class="container">
-                <div class="page-inner">
-                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-                        <div>
-                            <h3 class="fw-bold mb-3">Form WhatsApp</h3>
-                            <h6 class="op-7 mb-2">Untuk mengirim pesan WhatsApp ke penerima paket</h6>
-                        </div>
-                    </div>
-            
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="card-title">Form Pesan ke Chat WA</div>
-                                </div>
-                                <div class="card-body">
-                                    <form id="waForm" onsubmit="sendMessage(event)">
-                                        <div class="row">
-                                            <div class="col-lg-8">
-                                                <div class="form-group">
-                                                    <label for="no_telp">No Telp Penerima</label>
-                                                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Enter Phone Number" required/>
-                                                    <small>Jika diisi, pastikan No HP dapat menerima pesan WA</small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pesan">Pesan</label>
-                                                    <textarea class="form-control" id="pesan" name="pesan" rows="5" placeholder="Enter Your Message Here..." required>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Form Pesan ke Chat WA</div>
+                  </div>
+                  <div class="card-body">
+                    <form id="waForm" onsubmit="sendMessage(event)">
+                      <div class="row">
+                        <div class="col-lg-8">
+                          <div class="form-group">
+                            <label for="no_telp">No Telp Penerima</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="no_telp"
+                              name="no_telp"
+                              placeholder="Enter Phone Number"
+                              required
+                            />
+                            <small
+                              >Jika diisi, pastikan No HP dapat menerima pesan
+                              WA</small
+                            >
+                          </div>
+                          <div class="form-group">
+                            <label for="pesan">Pesan</label>
+                            <textarea
+                              class="form-control"
+                              id="pesan"
+                              name="pesan"
+                              rows="5"
+                              placeholder="Enter Your Message Here..."
+                              required
+                            >
 *ScanShip*
 *Status:* Sedang diambil oleh ... / Dalam pengiriman / Sudah sampai
-*LastInfo:* [... Hub] Paket Anda Sedang [Nama Penerima] (Status)</textarea>
-                                                    <small>Jika diisi, gunakan tanda <b>bintang (*)</b> untuk menjadikan teks menjadi tebal.</small>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                            </div>
-                                            <div class="col-lg-12 pt-5">
-                                                <button class="btn btn-primary" type="submit">SEND</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+*LastInfo:* [... Hub] Paket Anda Sedang [Nama Penerima] (Status)</textarea
+                            >
+                            <small
+                              >Jika diisi, gunakan tanda
+                              <b>bintang (*)</b> untuk menjadikan teks menjadi
+                              tebal.</small
+                            >
+                          </div>
                         </div>
-                    </div>
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-12 pt-5">
+                          <button class="btn btn-primary" type="submit">
+                            SEND
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
+    <script src="../assets/js/login.js"></script>
     <script type="text/javascript">
-        function sendMessage(event) {
-            event.preventDefault();
+      document.addEventListener("DOMContentLoaded", () => {
+        // Ambil data pengguna dari local storage
+        const userData = JSON.parse(localStorage.getItem("userData"));
 
-            var noTelp = document.getElementById("no_telp").value;
-            var pesan = document.getElementById("pesan").value;
-
-            // Convert to international format
-            if (noTelp.startsWith("0")) {
-                noTelp = "62" + noTelp.slice(1);
-            }
-
-            var url = "https://api.whatsapp.com/send?phone=" + encodeURIComponent(noTelp) + "&text=" + encodeURIComponent(pesan);
-
-            window.open(url, "_blank");
+        // Periksa apakah pengguna adalah admin
+        if (!userData || userData.role !== "admin") {
+          // Jika bukan admin, redirect atau tampilkan pesan error
+          alert(
+            "Access Denied: You do not have permission to access this page."
+          );
+          window.location.href = "../login.html"; // Redirect ke halaman login atau halaman lain yang sesuai
+        } else {
+          console.log("Welcome, admin!");
         }
-    </script>
+      });
 
-    <script src="../assets/admin/js/core/jquery.3.2.1.min.js"></script>
+      function sendMessage(event) {
+        event.preventDefault();
+
+        var noTelp = document.getElementById("no_telp").value;
+        var pesan = document.getElementById("pesan").value;
+
+        // Convert to international format
+        if (noTelp.startsWith("0")) {
+          noTelp = "62" + noTelp.slice(1);
+        }
+
+        var url =
+          "https://api.whatsapp.com/send?phone=" +
+          encodeURIComponent(noTelp) +
+          "&text=" +
+          encodeURIComponent(pesan);
+
+        window.open(url, "_blank");
+      }
+    </script>
+    <!--   Core JS Files   -->
+    <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>
     <script src="../assets/admin/js/core/popper.min.js"></script>
     <script src="../assets/admin/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
     <script src="../assets/admin/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
     <script src="../assets/admin/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
     <script src="../assets/admin/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
     <script src="../assets/admin/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
     <script src="../assets/admin/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
     <script src="../assets/admin/js/plugin/jsvectormap/jsvectormap.min.js"></script>
     <script src="../assets/admin/js/plugin/jsvectormap/world.js"></script>
+
+    <!-- Sweet Alert -->
     <script src="../assets/admin/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Kaiadmin JS -->
     <script src="../assets/admin/js/kaiadmin.min.js"></script>
+
+    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
     <script src="../assets/admin/js/setting-demo.js"></script>
     <script src="../assets/admin/js/demo.js"></script>
 
-    <script>
-        $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
-            type: "line",
-            height: "70",
-            width: "100%",
-            lineWidth: "2",
-            lineColor: "#177dff",
-            fillColor: "rgba(23, 125, 255, 0.14)",
-        });
-
-        $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
-            type: "line",
-            height: "70",
-            width: "100%",
-            lineWidth: "2",
-            lineColor: "#f3545d",
-            fillColor: "rgba(243, 84, 93, .14)",
-        });
-
-        $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
-            type: "line",
-            height: "70",
-            width: "100%",
-            lineWidth: "2",
-            lineColor: "#ffa534",
-            fillColor: "rgba(255, 165, 52, .14)",
-        });
-    </script>
-</body>
-
+  </body>
 </html>

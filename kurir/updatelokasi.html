@@ -273,7 +273,7 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-10">
                           <div class="form-group">
                             <label for="pilihStatus">Pilih status</label>
                             <select
@@ -284,11 +284,8 @@
                           </div>
                         </div>
                         <div class="col-md-2 mt-5">
-                          <select name=""class="form-select" id=""></select>
-                        </div>
-                        <div class="col-md-2 mt-5">
                           <button class="btn btn-primary" id="">
-                            Kirim data anda
+                            UPDATE
                           </button>
                         </div>
                       </div>
@@ -325,7 +322,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const noResi = urlParams.get("no_resi");
     const cardPaket = document.getElementById('cardPaket');
-    const pilihStatus = document.getElementById('pilihStatus');
+    const statusSelect = document.getElementById('pilihStatus');
     const trackLokasiPaket = document.getElementById('trackLokasiPaket');
     
     const resultPaket = getPaketDetail(noResi);
@@ -370,53 +367,75 @@
         </div>
       `;
 
-      pilihStatus.innerHTML = `
-      <option value="">---</option>
-        <option value="Paket anda telah diambil dari penjual">
-          Paket anda telah diambil dari penjual
-        </option>
-        <option value="Paket anda sedang dikirim">
-          Paket anda sedang dikirim
-        </option>
-        <option value="Paket anda sedang dikirim oleh kurir">
-          Paket anda sedang dikirim oleh kurir
-        </option>
-        <option value="Paket anda dalam perjalanan ke [Tangerang DC]">
-          Paket anda dalam perjalanan ke [Tangerang DC]
-        </option>
-        <option value="Paket telah diterima di pusat sortir">
-          Paket telah diterima di pusat sortir
-        </option>
-        <option value="Paket dalam perjalanan ke [Sawangan DC]">
-          Paket dalam perjalanan ke [Sawangan DC]
-        </option>
-        <option value="Paket sedang dikirim ke alamat tujuan">
-          Paket sedang dikirim ke alamat tujuan
-        </option>
-        <option value="Paket telah diterima oleh [${data.package.nama_penerima}]" >
-          Paket telah diterima oleh [${data.package.nama_penerima}]
-        </option>
-      `
+      const allStatuses = [
+        `Paket anda telah diambil dari [${data.package.nama_pengirim}]`,
+        `Paket anda sedang dikirim oleh [nama_kurir]`,
+        `Paket anda dalam perjalanan dari [${data.package.asal_pengirim}]`,
+        `Paket telah diterima di pusat sortir`,
+        `Paket dalam perjalanan ke [Sawangan DC]`,
+        `Paket sedang dikirim ke alamat tujuan`,
+        `Paket telah diterima oleh [${data.package.nama_penerima}]`
+      ];
 
+      // selected yang sudah dipilih
+      const selectedStatuses = data.status.map(status => status.status_lokasi);
 
-      const statusListItems = data.status.map(status=> `
-          <li class="feed-item">
-            <time class="date" datetime="${status.status_tanggal}">${new Date(status.status_tanggal).toLocaleDateString()}</time>
-            <span class="text">${status.status_lokasi}</span>
-            </li>
-        `).join('');
+      // statusSelect.innerHTML = `
+      //   <option value="" >---</option>
+      //   <option value="Paket anda telah diambil dari [${data.package.nama_pengirim}]">Paket anda telah diambil dari [${data.package.nama_pengirim}]</option>
+      //   <option value="Paket anda sedang dikirim oleh [nama_kurir]">Paket anda sedang dikirim oleh [nama_kurir]</option>
+      //   <option value="Paket anda dalam perjalanan dari [${data.package.asal_pengirim}]">Paket anda dalam perjalanan dari [${data.package.asal_pengirim}]</option>
+      //   <option value="Paket telah diterima di pusat sortir">Paket telah diterima di pusat sortir</option>
+      //   <option value="Paket dalam perjalanan ke [Sawangan DC]">Paket dalam perjalanan ke [Sawangan DC]</option>
+      //   <option value="Paket sedang dikirim ke alamat tujuan">Paket sedang dikirim ke alamat tujuan</option>
+      //   <option value="Paket telah diterima oleh [${data.package.nama_penerima}]">Paket telah diterima oleh [${data.package.nama_penerima}]</option>
+      // `;
+
+      // Menambahkan opsi ke dalam elemen select
+      allStatuses.forEach(status => {
+        if (!selectedStatuses.includes(status)) {
+          const option = document.createElement('option');
+          option.value = status; // Menggunakan status sebagai nilai
+          option.textContent = status; // Menggunakan status sebagai teks
+          statusSelect.appendChild(option);
+        }
+      });
+
+      const statusListItems = data.status.map(status => {
+          const date = new Date(status.status_tanggal);
+
+          // Format tanggal lokal
+          const optionsDate = { day: '2-digit', month: '2-digit', year: 'numeric' };
+          const formattedDate = date.toLocaleDateString('id-ID', optionsDate);
+
+          // Format jam dan menit
+          const optionsTime = {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false // Format 24 jam
+          };
+          const formattedTime = date.toLocaleTimeString('id-ID', optionsTime);
+
+          // Format hari
+          const optionsDay = { weekday: 'long' };
+          const formattedDay = date.toLocaleDateString('id-ID', optionsDay);
+
+          return `
+              <li class="feed-item">
+                  <time class="date" datetime="${status.status_tanggal}">
+                    ${formattedTime},  ${formattedDay} ${formattedDate} 
+                  </time>
+                  <span class="text">${status.status_lokasi}</span>
+              </li>
+          `;
+      }).join('');
 
       trackLokasiPaket.innerHTML = statusListItems;
 
 
-
     }).catch(error => {
       console.error('Error: ', error)
-    })
-
-
-    
-      // ambil data
+    });
     </script>
 
     <!--   Core JS Files   -->

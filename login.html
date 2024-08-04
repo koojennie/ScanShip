@@ -59,7 +59,7 @@
             </div>
             <div class="col-12 col-md-6"> 
                 <div class="login_content">
-                  <form class="login__form">
+                  <form class="login__form" id="loginForm">
                     <div>
                       <h1 class="login__title">Masuk</h1>
                       <p class="login__description">
@@ -68,38 +68,30 @@
                     </div>
 
                     <div>
-                      <form class="login__inputs" id="form-login">
                         <div>
-                          <label for="email" class="login__label" id="input-username">Username</label>
+                          <label for="email" class="login__label">Username</label>
                           <input
                             class="login__input"
                             type="text"
-                            id="username"
+                            id="input-username"
                             placeholder="Masukkan username anda"
                             required
                           />
                         </div>
 
                         <div>
-                          <label for="password" class="login__label" id="input-password">Password</label>
+                          <label for="password" class="login__label">Password</label>
                           <div class="login__box">
                             <input
                               class="login__input"
                               type="password"
-                              id="password"
+                              id="input-password"
                               placeholder="Masukkan password anda"
                               required
                             />
-                            <i
-                              class="ri-eye-off-line login__eye"
-                              id="input-icon"
-                            ></i>
+                            <i class="ri-eye-off-line login__eye" id="input-icon"></i>
                           </div>
                         </div>
-                      </form>
-
-                    </di id="form-login"v>
-
                     <div>
                       <div class="login__buttons">
                         <button class="login__button">Masuk</button>
@@ -121,6 +113,21 @@
 
     <script src="assets/js/login.js"></script>
     <script>
+
+    const loginForm = document.getElementById('loginForm');
+      
+      loginForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const dataLogin = {
+          email: document.getElementById('input-username').value, 
+          password: document.getElementById('input-password').value, 
+        }
+
+
+        await login(dataLogin);
+      });
+
       
     </script>
 
