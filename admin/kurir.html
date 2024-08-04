@@ -80,13 +80,13 @@
                   <p>Dashboard</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a href="paket.html">
                   <i class="fas fa-box"></i>
                   <p>Paket</p>
                 </a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a href="kurir.html">
                     <i class="fas fa-truck-loading"></i>
                     <p>Kurir</p>
@@ -201,9 +201,7 @@
                       </li>
                       <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="../logout.html"
-                          >Logout</a
-                        >
+                        <a class="dropdown-item" onclick="logout()" href="#">Logout</a>
                       </li>
                     </div>
                   </ul>
@@ -221,7 +219,7 @@
             >
               <div>
                 <h3 class="fw-bold mb-3">Kurir</h3>
-                <h6 class="op-7 mb-2">Manajemen kurir ScanShip</h6>
+                <h6 class="op-7 mb-2">Manajemen Kurir ScanShip</h6>
               </div>
             </div>
             <div class="row">
@@ -230,8 +228,7 @@
                   <div class="card-header">
                     <h4 class="card-title">Tabel Kurir</h4>
                     <div class="d-flex justify-content-end">
-                      <a href="addkurir.html" class="btn btn-primary"
-                        >Tambah Kurir</a>
+                      <a href="addkurir.html" class="btn btn-primary">Tambah Kurir</a>
                     </div>
                   </div>
                   <div class="card-body">
@@ -263,12 +260,13 @@
 
     <!--   Core JS Files   -->
     <script src="js/fetchapi.js"></script>
+    
+    <script src="../assets/js/login.js"></script>
 
     <script>
         // Panggil fungsi untuk mengambil dan menampilkan data
-        getAllKurir();        
-
-      </script>
+        getAllKurir();
+    </script>
 
     <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>
     <script src="../assets/admin/js/core/popper.min.js"></script>
@@ -304,12 +302,12 @@
     <script src="../assets/admin/js/demo.js"></script>
     <script>
 
-      $(document).ready(function () {
-        // Inisialisasi DataTables
-        $("#kurir-datatables").DataTable({
-            // columnDefs: [{ width: '10%', targets: 0 }]
-        });
-      });
+    //   $(document).ready(function () {
+    //     // Inisialisasi DataTables
+    //     $("#kurir-datatables").DataTable({
+    //         // columnDefs: [{ width: '10%', targets: 0 }]
+    //     });
+    //   });
 
     </script>
     <!-- Code injected by live-server -->
