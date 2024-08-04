@@ -164,7 +164,7 @@
                                         </li>
                                         <li>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="../logout.html">Logout</a>
+                                            <a class="dropdown-item" onclick="logout()" href="#">Logout</a>
                                         </li>
                                     </div>
                                 </ul>
@@ -244,13 +244,29 @@
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        // Ambil data pengguna dari local storage
+        const userData = JSON.parse(localStorage.getItem('userData'));
+
+        // Periksa apakah pengguna adalah admin
+        if (!userData || userData.role !== 'admin') {
+            // Jika bukan admin, redirect atau tampilkan pesan error
+            alert('Access Denied: You do not have permission to access this page.');
+            window.location.href = '../login.html'; // Redirect ke halaman login atau halaman lain yang sesuai
+        } else {
+            console.log('Welcome, admin!');
+        }
+
+        });
+
+    </script>
+
+    
+    <script src="../assets/js/login.js"></script>
     <!--   Core JS Files   -->
     <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>
     <script src="../assets/admin/js/core/popper.min.js"></script>
@@ -312,44 +328,5 @@
             fillColor: "rgba(255, 165, 52, .14)",
         });
     </script>
-    <!-- Code injected by live-server -->
-    <script>
-        // <![CDATA[  <-- For SVG support
-        if ('WebSocket' in window) {
-            (function () {
-                function refreshCSS() {
-                    var sheets = [].slice.call(document.getElementsByTagName("link"));
-                    var head = document.getElementsByTagName("head")[0];
-                    for (var i = 0; i < sheets.length; ++i) {
-                        var elem = sheets[i];
-                        var parent = elem.parentElement || head;
-                        parent.removeChild(elem);
-                        var rel = elem.rel;
-                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-                        }
-                        parent.appendChild(elem);
-                    }
-                }
-                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-                var address = protocol + window.location.host + window.location.pathname + '/ws';
-                var socket = new WebSocket(address);
-                socket.onmessage = function (msg) {
-                    if (msg.data == 'reload') window.location.reload();
-                    else if (msg.data == 'refreshcss') refreshCSS();
-                };
-                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-                    console.log('Live reload enabled.');
-                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-                }
-            })();
-        }
-        else {
-            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-        }
-        // ]]>
-    </script>
-</body>
-
+    </body>
 </html>
