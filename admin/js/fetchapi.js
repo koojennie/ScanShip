@@ -1,7 +1,9 @@
   // BASE API URL, kalau punya kamu port localhost beda ganti disini ya cantik 💙
   // di liat juga akhiran gak pake slash / 
-  BASE_URL = `http://localhost/scanship-api`
+  BASE_URL = `http://localhost:8080/scanship-api`
 
+
+  // paket
   // function for getALlpaket semua paket untuk di halaman paket
   async function getAllPaket() {
     try {
@@ -114,7 +116,7 @@
       const response = await fetch(`${BASE_URL}/paket/create.php`, {
         method: 'POST',
         headers: {
-          'Contet-type': 'application/json'
+          'Content-type': 'application/json'
         },
         body: JSON.stringify(paketData),
       })
@@ -204,3 +206,140 @@
     }
 
   }
+  // paket
+
+
+  // kurir
+  // function for getALlpaket semua paket untuk di halaman paket
+  async function getAllKurir() {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/kurir/read.php`
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      // Mengambil elemen tbody
+      const tableBody = document.getElementById("tableKurir");
+
+      // Membersihkan tbody sebelum menambahkan data baru
+      tableBody.innerHTML = "";
+
+      // Mengiterasi data dan membuat baris tabel
+      result.data.forEach((item, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${item.id_kurir}</td>
+            <td>${item.usn_kurir}</td>
+            <td>${item.nama_kurir}</td>
+            <td>${item.email_kurir}</td>
+            <td>${item.notelp_kurir}</td>
+            <td>
+              <a href="editkurir.html?id_kurir=${item.id_kurir}" class="btn btn-sm btn-warning btn-round"><i class="fas fa-edit" aria-hidden="true"></i></a>
+              <button class="btn btn-sm btn-danger btn-round delete-button-paket" data-id="${item.id_kurir}" data-type="kurir">
+                <i class="fa fa-trash"></i>
+              </button> 
+            </td>
+          `;
+
+          tableBody.appendChild(row);
+          addDeleteEventListeners();
+      });
+    } catch (error) {
+      console.log("Terdapat error saat fetch API:", error);
+    }
+  }
+
+  // buat cari data detail
+  async function getKurirDetailForEdit(idKurir) {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/kurir/read.php?id_kurir=${idKurir}`
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const result = await response.json();
+
+      const data = result.data;
+
+      // Isi form dengan data yang diambil
+      document.getElementById("no-resi-edit").value = data.no_resi;
+      document.getElementById("tanggal-pengiriman-edit").value = data.tanggal_pengiriman;
+      document.getElementById("nama-pengirim-edit").value = data.nama_pengirim;
+      document.getElementById("asal-pengirim-edit").value = data.asal_pengirim;
+      document.getElementById("nama-penerima-edit").value = data.nama_penerima;
+      document.getElementById("notelp-penerima-edit").value = data.notelp_penerima;
+      document.getElementById("tujuan-edit").value = data.alamat_tujuan;
+    } catch (error) {
+      console.error("Error fetching paket details:", error);
+    }
+  }
+
+  async function getKurirDetail(idKurir) {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/kurir/read.php?id_kurir=${idKurir}`
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const result = await response.json();
+
+      const data = result.data;
+
+      if(data || data.length === 0){
+        console.log(`No data found for id_kurir${idKurir}`)
+        return null;
+      }
+
+      return data;
+
+    } catch{
+      console.error("Error fetching courier details:", error);
+      return null;
+    }
+  }
+
+  // handle post paket
+  async function handlePostKurir(kurirData){
+    try{
+      // cek apakah resi ada
+      // const tersediaPaket = await getPaketDetail(no_resi);
+      // if(tersediaPaket){
+      //   alert("No resi sudah ada, Harap gunakan no resi yang berbeda");
+      //   return;
+      // }
+
+      // post data paket
+      const response = await fetch(`${BASE_URL}/kurir/create.php`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(kurirData),
+      })
+
+      // Cek apakah permintaan berhasil
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      console.log('Kurir berhasil ditambahkan:', data);
+
+      // Tampilkan pesan sukses atau redirect ke halaman lain
+      window.location.href = "kurir.html"
+
+    } catch(error){
+      console.error("Error insert paket: ", error);
+      alert("terjadi kesalahan");
+    }
+  } 
+

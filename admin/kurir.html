@@ -80,13 +80,13 @@
                   <p>Dashboard</p>
                 </a>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a href="paket.html">
                   <i class="fas fa-box"></i>
                   <p>Paket</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a href="kurir.html">
                     <i class="fas fa-truck-loading"></i>
                     <p>Kurir</p>
@@ -201,7 +201,9 @@
                       </li>
                       <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" onclick="logout()" href="#">Logout</a>
+                        <a class="dropdown-item" href="../logout.html"
+                          >Logout</a
+                        >
                       </li>
                     </div>
                   </ul>
@@ -218,37 +220,36 @@
               class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
             >
               <div>
-                <h3 class="fw-bold mb-3">Paket</h3>
-                <h6 class="op-7 mb-2">Manajemen paket ScanShip</h6>
+                <h3 class="fw-bold mb-3">Kurir</h3>
+                <h6 class="op-7 mb-2">Manajemen kurir ScanShip</h6>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Tabel Paket</h4>
+                    <h4 class="card-title">Tabel Kurir</h4>
                     <div class="d-flex justify-content-end">
-                      <a href="addpaket.html" class="btn btn-primary"
-                        >Tambah Paket</a
-                      >
+                      <a href="addkurir.html" class="btn btn-primary"
+                        >Tambah Kurir</a>
                     </div>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
                       <table
-                        id="paket-datatables"
+                        id="katalog-datatables"
                         class="display table table-striped table-hover"
                       >
                         <thead>
                           <tr>
-                            <th>No Resi</th>
-                            <th>Tanggal</th>
-                            <th>Nama Penerima</th>
-                            <th>No Telp Penerima</th>
-                            <th>Alamat Tujuan</th>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>No Telp</th>
                           </tr>
                         </thead>
-                        <tbody id="tablePaket"></tbody>
+                        <tbody id="tableKurir"></tbody>
                       </table>
                     </div>
                   </div>
@@ -262,24 +263,11 @@
 
     <!--   Core JS Files   -->
     <script src="js/fetchapi.js"></script>
-    
-    <script src="../assets/js/login.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          // Ambil data pengguna dari local storage
-          const userData = JSON.parse(localStorage.getItem('userData'));
+        // Panggil fungsi untuk mengambil dan menampilkan data
+        getAllKurir();        
 
-          // Periksa apakah pengguna adalah admin
-          if (!userData || userData.role !== 'admin') {
-              // Jika bukan admin, redirect atau tampilkan pesan error
-              alert('Access Denied: You do not have permission to access this page.');
-              window.location.href = '../login.html'; // Redirect ke halaman login atau halaman lain yang sesuai
-          } else {
-              // console.log('Welcome, admin!');
-              getAllPaket();        
-          }
-        });
       </script>
 
     <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>
@@ -315,14 +303,32 @@
     <script src="../assets/admin/js/setting-demo.js"></script>
     <script src="../assets/admin/js/demo.js"></script>
     <script>
-
-      $(document).ready(function () {
-        // Inisialisasi DataTables
-        $("#paket-datatables").DataTable({
-            // columnDefs: [{ width: '10%', targets: 0 }]
-        });
+      $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
       });
 
+      $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#f3545d",
+        fillColor: "rgba(243, 84, 93, .14)",
+      });
+
+      $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#ffa534",
+        fillColor: "rgba(255, 165, 52, .14)",
+      });
     </script>
     <!-- Code injected by live-server -->
     
