@@ -86,6 +86,12 @@
                   <p>Paket</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="kurir.html">
+                    <i class="fas fa-truck-loading"></i>
+                    <p>Kurir</p>
+                </a>
+            </li>
               <li class="nav-item active">
                 <a href="formwa.html">
                   <i class="fab fa-whatsapp"></i>
@@ -288,7 +294,7 @@
         // Ambil data pengguna dari local storage
         const userData = JSON.parse(localStorage.getItem("userData"));
 
-        // Periksa apakah pengguna adalah admin
+        // Peri sa apakah pengguna adalah admin
         if (!userData || userData.role !== "admin") {
           // Jika bukan admin, redirect atau tampilkan pesan error
           alert(

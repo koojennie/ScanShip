@@ -1,6 +1,6 @@
   // BASE API URL, kalau punya kamu port localhost beda ganti disini ya cantik 💙
   // di liat juga akhiran gak pake slash / 
-  BASE_URL = `http://localhost:8080/scanship-api`
+  BASE_URL = `http://localhost/scanship-api`
 
 
   // paket
