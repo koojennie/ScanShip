@@ -27,3 +27,31 @@ async function getPaketDetail(noResi) {
   }
 }
 
+async function updateStatusLokasi(statusData) {
+  try{
+    const response = await fetch(
+      `${BASE_URL}/status/createStatusForScan.php`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(statusData)
+      }
+
+    );
+
+    if(!response.ok){
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    console.log('Status Paket berhasil ditambahkan:', data);
+
+      // Tampilkan pesan sukses atau redirect ke halaman lain
+      // window.location.href = "paket.html"
+  } catch(error){
+    console.error('terdapat error ketika updateStatusLokasi', error);
+  }
+}
+

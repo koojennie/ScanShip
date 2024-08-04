@@ -175,7 +175,7 @@
                     </div>
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Kurir</span>
+                      <span class="fw-bold" id="namaKangKurir">Kurir</span>
                     </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -189,15 +189,14 @@
                               class="avatar-img rounded-circle"
                             />
                           </div>
-                          <div class="u-text">
-                            <h4>Kurir</h4>
-                            <p class="text-muted">kurir@gmail.com</p>
+                          <div class="u-text" id="dataKangKurir">
+                            
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="../logout.html"
+                        <a class="dropdown-item" onclick="logout()" href=""
                           >Logout</a
                         >
                       </li>
@@ -233,61 +232,32 @@
                           </div>
                         </div>
                         <div class="col-md-3 ps-md-0 pe-md-0 mr-5">
-                          <div class="card card-pricing card-light bg-light">
-                            <div class="card-header">
-                              <h4 class="card-title">Info Paket</h4>
-                              <h5 class="text-primary">SPXID045551481646</h5>
-                            </div>
-                            <div class="card-body">
-                              <ul class="specification-list">
-                                <li>
-                                  <span class="name-specification text-black"
-                                    >Nama Penerima</span
-                                  >
-                                  <span class="status-specification" id=""
-                                    >Alia</span
-                                  >
-                                </li>
-                                <li>
-                                  <span class="name-specification text-black"
-                                    >Notelp Penerima</span
-                                  >
-                                  <span class="status-specification" id=""
-                                    >087123455</span
-                                  >
-                                </li>
-                                <li>
-                                  <span class="name-specification text-black"
-                                    >Alamat Penerima</span
-                                  >
-                                  <br />
-                                  <br />
-                                  <span class="" id=""
-                                    >Jl. Teratai Raya No. 88, RT 001/RW 002,
-                                    Sukmajaya, Mekarjaya, Depok</span
-                                  >
-                                </li>
-                              </ul>
-                            </div>
+                          <div class="card card-pricing card-light bg-light" id="cardKurir">
+                            
                           </div>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-10">
+                        <form action="" id="form-status-tanggal">
+                        <div class="col-md-5 mt-1">
                           <div class="form-group">
                             <label for="pilihStatus">Pilih status</label>
-                            <select
-                              class="form-select form-control-lg"
-                              id="pilihStatus"
-                            >
-                              </select>
+                            <select class="form-select form-control" id="pilihStatus">
+                            </select>
                           </div>
                         </div>
+                        <div class="col-md-3 mt-4">
+                          <div class="form-group">
+                            <input type="datetime-local" class="form-control" name="" id="status_tanggal">
+                          </div>
+                        </div>
+
                         <div class="col-md-2 mt-5">
                           <button class="btn btn-primary" id="">
                             UPDATE
                           </button>
                         </div>
+                      </form>
                       </div>
                     </div>
                   </div>
@@ -318,16 +288,58 @@
     </div>
 
     <script src="updatelokasi.js"></script>
+    <script src="../assets/js/login.js"></script>
     <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const noResi = urlParams.get("no_resi");
-    const cardPaket = document.getElementById('cardPaket');
-    const statusSelect = document.getElementById('pilihStatus');
-    const trackLokasiPaket = document.getElementById('trackLokasiPaket');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userData = JSON.parse(localStorage.getItem("userData"));
+
+      // Periksa apakah pengguna adalah admin
+      if (!userData || userData.role !== "kurir") {
+        // Jika bukan admin, redirect atau tampilkan pesan error
+        alert(
+          "Access Denied: You do not have permission to access this page."
+        );
+        window.location.href = "../login.html"; // Redirect ke halaman login atau halaman lain yang sesuai
+      } else {
+        console.log("Welcome, kurir!");
+        
+      const urlParams = new URLSearchParams(window.location.search);
+      const noResi = urlParams.get("no_resi");
+      const cardPaket = document.getElementById('cardPaket');
+      const cardKurir = document.getElementById('cardKurir');
+      const statusSelect = document.getElementById('pilihStatus');
+      const trackLokasiPaket = document.getElementById('trackLokasiPaket');
+      const namaKurir = document.getElementById("namaKangKurir");
+      const dataKurir = document.getElementById("dataKangKurir");
+      const statusTanggal = document.getElementById('status_tanggal');
+      const pilihStatus = document.getElementById('pilihStatus');
+      const formStatusTanggal = document.getElementById('form-status-tanggal');
     
-    const resultPaket = getPaketDetail(noResi);
-    
-    resultPaket.then(data => {
+      const userData = JSON.parse(localStorage.getItem("userData"));
+
+      namaKurir.innerText = userData.name;
+      dataKurir.innerHTML = `
+        <h4>${userData.name} | Kurir</h4>
+        <p class="text-muted">${userData.email}</p>
+        `;
+
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+
+        // Membentuk string dengan format yyyy-mm-ddThh:mm
+        const datetimeLocalValue = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+      statusTanggal.value = datetimeLocalValue;
+
+
+      const resultPaket = getPaketDetail(noResi);
+
+      resultPaket.then(data => {
       console.log(data);
 
       cardPaket.innerHTML = `
@@ -367,12 +379,74 @@
         </div>
       `;
 
+      const kurirInfo = data.package.id_kurir ? `<div class="card-header">
+        <h4 class="card-title">Info Kurir</h4>
+        <h5 class="text-primary">${data.package.id_kurir}</h5>
+      </div>
+      <div class="card-body">
+        <ul class="specification-list">
+          <li>
+            <span class="name-specification text-black"
+              >Nama Kurir</span
+            >
+            <span class="status-specification" id="">${data.package.nama_kurir}</span>
+          </li>
+          <li>
+            <span class="name-specification text-black"
+              >Notelp Kurir</span
+            >
+            <span class="status-specification" id=""
+              >${data.package.notelp_kurir}</span
+            >
+          </li>
+          <li>
+            <span class="name-specification text-black">Email Kurir</span>
+            <br />
+            <br />
+            <span class="" id="">${data.package.email_kurir}</span>
+          </li>
+        </ul>
+      </div>
+      ` : 
+      `<div class="card-header">
+        <h4 class="card-title">Info Kurir</h4>
+        <h5 class="text-primary">Paket dalam ekspedisi Belum diambil kurir</h5>
+      </div>
+      <div class="card-body">
+        <ul class="specification-list">
+          <li>
+            <span class="name-specification text-black"
+              >Nama Kurir</span
+            >
+            <span class="status-specification" id="">Paket dalam Ekspedisi</span>
+          </li>
+          <li>
+            <span class="name-specification text-black"
+              >Notelp Kurir</span
+            >
+            <span class="status-specification" id=""
+              >Paket dalam Ekspedisi</span
+            >
+          </li>
+          <li>
+            <span class="name-specification text-black">Email Kurir</span>
+            <br />
+            <br />
+            <span class="" id="">Paket dalam Ekspedisi</span>
+          </li>
+        </ul>
+      </div>
+      `
+      
+      cardKurir.innerHTML = kurirInfo;
+
+      // status yang tersedia 
       const allStatuses = [
         `Paket anda telah diambil dari [${data.package.nama_pengirim}]`,
-        `Paket anda sedang dikirim oleh [nama_kurir]`,
         `Paket anda dalam perjalanan dari [${data.package.asal_pengirim}]`,
         `Paket telah diterima di pusat sortir`,
         `Paket dalam perjalanan ke [Sawangan DC]`,
+        `Paket anda sedang dikirim oleh [${userData.name}]`,
         `Paket sedang dikirim ke alamat tujuan`,
         `Paket telah diterima oleh [${data.package.nama_penerima}]`
       ];
@@ -433,9 +507,36 @@
       trackLokasiPaket.innerHTML = statusListItems;
 
 
+      formStatusTanggal.addEventListener('submit', async function(event){
+        event.preventDefault();
+
+        const selectedStatus = pilihStatus.value;
+        const selectedDate = statusTanggal.value;
+
+        const statusData = {
+          status_tanggal : selectedDate,
+          status_lokasi: selectedStatus,
+          no_resi: data.package.no_resi
+        }
+
+        console.log(JSON.stringify(statusData));
+
+        updateStatusLokasi(statusData);
+
+
+        alert("Status Berhasil ditambahkan");
+
+      window.location.href = `updatelokasi.html?no_resi=${data.package.no_resi}`;
+
+      })
+
+
     }).catch(error => {
       console.error('Error: ', error)
     });
+
+  }
+});
     </script>
 
     <!--   Core JS Files   -->
