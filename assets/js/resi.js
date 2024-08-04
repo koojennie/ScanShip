@@ -1,27 +1,24 @@
-const bodyCard = document.querySelector(".body-card"),
-  summary = document.querySelector("#summary"),
-  infoCard = document.querySelector(".info-card"),
-  history = document.querySelector("#container-fill"),
-  progressHistory = document.querySelector(".progress-history");
+document.addEventListener("DOMContentLoaded", function () {
+  const bodyCard = document.querySelector(".body-card"),
+    summary = document.querySelector("#summary"),
+    infoCard = document.querySelector(".info-card"),
+    history = document.querySelector("#container-fill"),
+    progressHistory = document.querySelector(".progress-history");
 
-let link = window.location.href,
-  pageURL = link
-    .substring(link.indexOf("?") + 1)
-    .split(/[&]+/)
-    .sort();
+  let link = window.location.href,
+    pageURL = link
+      .substring(link.indexOf("?") + 1)
+      .split(/[&]+/)
+      .sort();
 
-if (pageURL[1]) {
-  let token = "2095f0ac739b457093c0ab990711cd2395bb32d55d0c0ba536a55374118d71d4", // paste api key here
-    courier = pageURL[0].split(/[=]+/)[1],
-    awb = pageURL[1].split(/[=]+/)[1],
-    urlApi = `https://api.binderbyte.com/v1/track?api_key=${token}&courier=${courier}&awb=${awb}`;
+  if (pageURL[0]) {
+      let no_resi = pageURL[0].split(/[=]+/)[1],
+      urlApi = `http://localhost:8080/scanship-api/paket/read.php?no_resi=${no_resi}`;
 
-  console.log(urlApi);
-  // Logika URL
-  if (awb) {
-    inputResi.value = awb.replace(/[^\w]/gi, "").substring(0, 17);
-    if (courier) {
-      optionExpedisi.value = 1;
+    console.log(urlApi);
+    // Logika URL
+    if (no_resi) {
+      document.querySelector("#resi").value = no_resi.replace(/[^\w]/gi, "").substring(0, 17);
       bodyCard.classList.remove("flex");
       history.classList.remove("display-false");
       summary.classList.remove("display-false");
@@ -29,35 +26,38 @@ if (pageURL[1]) {
       getJSON(urlApi);
     }
   }
-}
 
-// WARNING: For GET requests, body is set to null by browsers.
-function getJSON(url) {
-  var xhr = new XMLHttpRequest();
-  xhr.withCredentials = false;
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === 4) {
-      let respon = JSON.parse(this.responseText).data;
-      // Section detail
-      summary.innerHTML = `<table>
-            <tr><td>No Resi</td><td>:</td><td>${respon.summary.awb}</td></tr>
-            <tr><td>Courier</td><td>:</td><td>${respon.summary.courier}</td></tr>
-            <tr><td>Service</td><td>:</td><td>${respon.summary.service}</td></tr>
-            <tr><td>Shipper</td><td>:</td><td>${respon.detail.shipper} <br />${respon.detail.origin}</td></tr>
-            <tr><td>Receiver</td><td>:</td><td>${respon.detail.receiver} <br />${respon.detail.destination}</td></tr>
-            <tr><td>Status</td><td>:</td><td>${respon.summary.status}</td></tr>
-        </table>`;
-      // Perjalanan Paket
-      respon.history.forEach((e) => {
-        let date = e.date.split(/[ ]+/);
-        progressHistory.innerHTML += `<div class="progress-section flex">
-            <div style="text-align: right"><p>${date[0]}</p><p>${date[1]}</p><p>${respon.summary.courier}</p></div>
-            <div class="radio"></div>
-            <div style="text-align: left"><p>${e.desc}</p></div>
-        </div>`;
-      });
-    }
-  });
-  xhr.open("GET", url);
-  xhr.send();
-}
+  // WARNING: For GET requests, body is set to null by browsers.
+  function getJSON(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = false;
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        let respon = JSON.parse(this.responseText).data;
+        // Section detail
+        summary.innerHTML = `<table>
+              <tr><td>No Resi</td><td>:</td><td>${respon.package.no_resi}</td></tr>
+              <tr><td>Tanggal Pengiriman</td><td>:</td><td>${respon.package.tanggal_pengiriman}</td></tr>
+              <tr><td>Nama Pengirim</td><td>:</td><td>${respon.package.nama_pengirim}</td></tr>
+              <tr><td>Asal Pengirim</td><td>:</td><td>${respon.package.asal_pengirim}</td></tr>
+              <tr><td>Nama Penerima</td><td>:</td><td>${respon.package.nama_penerima}</td></tr>
+              <tr><td>No Telp Penerima</td><td>:</td><td>${respon.package.notelp_penerima}</td></tr>
+              <tr><td>Alamat Tujuan</td><td>:</td><td>${respon.package.alamat_tujuan}</td></tr>
+              <tr><td>Tanggal Penerimaan</td><td>:</td><td>${respon.package.tanggal_penerimaan}</td></tr>
+          </table>`;
+        // Perjalanan Paket
+        respon.status.forEach((e) => {
+          let status_tanggal = e.status_tanggal.split(/[ ]+/);
+          progressHistory.innerHTML += `<div class="progress-section flex">
+              <div style="text-align: right"><p>${status_tanggal[0]}</p><p>${status_tanggal[1]}</p><p>ScanShip</p></div>
+              <div class="radio"></div>
+              <div style="text-align: left"><p>${e.status_lokasi}</p></div>
+          </div>`;
+        });
+      }
+    });
+    xhr.open("GET", url);
+    xhr.send();
+  }
+
+});

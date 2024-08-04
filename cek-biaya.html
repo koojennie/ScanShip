@@ -49,45 +49,36 @@
             <form>
                 <div class="form-group p-3">
                     <span class="icon"><i class="fa-regular fa-location-dot"></i></span>
-                    <input type="text" class="form-control" id="asalPengiriman" placeholder="Asal Pengiriman">
+                    <input type="text" class="form-control" id="asalPengiriman" placeholder="Asal Pengiriman" required oninvalid="this.setCustomValidity('Masukkan asal pengiriman 📍');" 
+                    onchange="try{setCustomValidity('')}catch(e){};" x-moz-errormessage="Masukkan asal pengiriman 📍">
                 </div>
                 <div class="form-group p-3">
                     <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
-                    <input type="text" class="form-control" id="tujuanPengiriman" placeholder="Tujuan Pengiriman">
+                    <input type="text" class="form-control" id="tujuanPengiriman" placeholder="Tujuan Pengiriman" required oninvalid="this.setCustomValidity('Masukkan tujuan pengiriman 📍');" 
+                    onchange="try{setCustomValidity('')}catch(e){};" x-moz-errormessage="Masukkan tujuan pengiriman 📍">
                 </div>
             </form>
         </div>
         <div class="form-group p-3" style="width: 620px;">
             <span class="icon"><i class="fa-regular fa-weight-scale"></i></span>
-            <input type="number" class="form-control" id="beratBarang" placeholder="Berat Barang (kg)">
+            <input type="number" class="form-control" id="beratBarang" placeholder="Berat Barang (kg)" required oninvalid="this.setCustomValidity('Masukkan berat barang ⚖️');" 
+            onchange="try{setCustomValidity('')}catch(e){};" x-moz-errormessage="Masukkan berat barang ⚖️">
         </div>
-        <button type="button" class="btn cek text-center btn-primary btn-block md-5 mt-4">Cek Harga</button>
+        <button type="button" class="btn cek text-center btn-primary btn-block md-5 mt-4" onclick="cekOngkir()">Cek Harga</button>
     </div>
 
-    <div class="container mt-5">
+    <div class="container mt-5" id="resultTable">
         <table class="table mt-4">
             <thead class="thead-dark text-center">
                 <tr>
-                    <th>Asal</th>
-                    <th>Tujuan</th>
-                    <th>Berat</th>
+                    <th>Layanan</th>
+                    <th>Jenis Kiriman</th>
+                    <th>Estimasi Tiba</th>
                     <th>Ongkir</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="hasilOngkir">
                 <!-- Data akan muncul di sini -->
-                <tr>
-                    <th>row database</th>
-                    <th>row database</th>
-                    <th>row database</th>
-                    <th>row database</th>
-                </tr>
-                <tr>
-                    <th>row database</th>
-                    <th>row database</th>
-                    <th>row database</th>
-                    <th>row database</th>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -103,7 +94,7 @@
                         <p>Solusi pengiriman Anda</p>
                         <div class="social-icons">
                             <a href="https://instagram.com/ka01dump"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="mailto:2326ka01@gmail.com"><i class="fa-solid fa-mailbox"></i></a>
+                            <a href="mailto:2326ka01@gmail.com"><i class="fa-regular fa-mailbox"></i></a>
                             <a href="https://x.com/gunadarma_"><i class="fa-brands fa-twitter"></i></a>
                             <a href="https://www.tiktok.com/@univgunadarma"><i class="fa-brands fa-tiktok"></i></a>
                         </div>
@@ -152,8 +143,36 @@
         </div>
     </footer>
 
-    <script src="assets/js/kurir.js"></script>
-    <script src="assets/js/resi.js"></script>
+    <script>
+        function cekOngkir() {
+            var berat = document.getElementById('beratBarang').value;
+            var hasilOngkir = document.getElementById('hasilOngkir');
+            var resultTable = document.getElementById('resultTable');
+            hasilOngkir.innerHTML = '';
+
+            if (berat && berat > 0) {
+                fetch(`http://localhost:8080/scanship-api/ongkir.php?berat=${berat}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(item => {
+                            var row = `
+                                <tr class="text-center">
+                                    <td>${item.layanan}</td>
+                                    <td>${item.jenis_kiriman}</td>
+                                    <td>${item.estimasi_tiba}</td>
+                                    <td>${item.ongkir}</td>
+                                </tr>
+                            `;
+                            hasilOngkir.innerHTML += row;
+                        });
+                        resultTable.style.display = 'block'; // Show the table
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                alert('Mohon masukkan berat barang yang valid.');
+            }
+        }
+    </script>
 </body>
 
 </html>

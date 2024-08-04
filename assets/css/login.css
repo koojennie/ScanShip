@@ -114,6 +114,7 @@ img {
 }
 
 .login__input {
+  margin-bottom: 15px;
   width: 100%;
   padding: 14px 12px;
   border: 2px solid #ffffff;
@@ -201,6 +202,7 @@ img {
   font-weight: var(--font-semi-bold);
   box-shadow: 0 6px 24px #033c5798;
   margin-bottom: 1rem;
+  margin-top: 50px;
 }
 
 .login__forgot {
@@ -210,11 +212,26 @@ img {
   text-decoration: none;
 }
 
+.custom-icon:hover {
+  transform: scale(0.9);
+  transition: 0.5s ease-in-out;
+}
+
+.custom-icon::after {
+  all: unset;
+  width: 100%;
+}
+
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 360px) {
   .login__buttons {
     flex-direction: column;
+  }
+
+  .custom-icon {
+    height: 30px;
+    width: 30px;
   }
 }
 
@@ -255,7 +272,7 @@ img {
   }
 
   .login__form {
-    row-gap: 2rem;
+    row-gap: 1rem;
     padding: 3rem;
     border-radius: 1.25rem;
   }
@@ -277,8 +294,9 @@ img {
   }
 
   .login__button {
+    margin-top: 1.5rem;
     padding-block: 1rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
 
 }
