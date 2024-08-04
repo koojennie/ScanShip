@@ -192,9 +192,12 @@
                                 </div>
                                 <div class="card-body">
                                     <form action="" id="edit-paket-form" method="post">
-                                        <input type="hidden" id="no-resi-edit" name="no-resi-edit" value="">
                                         <div class="row">
-                                            <div class="col-lg-8">                              
+                                            <div class="col-lg-8">
+                                                <div class="form-group">
+                                                    <label for="no-resi">No Resi</label>
+                                                    <input type="text" class="form-control" id="no-resi-edit" name="no-resi-edit" placeholder="Enter No" value="" readonly/>
+                                                </div>                              
                                                 <div class="form-group">
                                                     <label for="tanggal">Tanggal Pengiriman</label>
                                                     <input type="text" class="form-control" id="tanggal-pengiriman-edit" name="tanggal-pengiriman-edit" placeholder="Enter Date" value="" required/>
@@ -253,6 +256,7 @@
                 event.preventDefault();
 
             const updatePaket = {
+                no_resi: document.getElementById("no-resi-edit").value,
                 tanggal_pengiriman: document.getElementById("tanggal-pengiriman-edit").value,
                 nama_pengirim: document.getElementById("nama-pengirim-edit").value,
                 asal_pengirim: document.getElementById("asal-pengirim-edit").value,

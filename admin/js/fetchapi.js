@@ -241,7 +241,7 @@
             <td>${item.notelp_kurir}</td>
             <td>
               <a href="editkurir.html?id_kurir=${item.id_kurir}" class="btn btn-sm btn-warning btn-round"><i class="fas fa-edit" aria-hidden="true"></i></a>
-              <button class="btn btn-sm btn-danger btn-round delete-button-paket" data-id="${item.id_kurir}" data-type="kurir">
+              <button class="btn btn-sm btn-danger btn-round delete-button-kurir" data-id="${item.id_kurir}" data-type="kurir">
                 <i class="fa fa-trash"></i>
               </button> 
             </td>
@@ -269,13 +269,13 @@
       const data = result.data;
 
       // Isi form dengan data yang diambil
-      document.getElementById("no-resi-edit").value = data.no_resi;
-      document.getElementById("tanggal-pengiriman-edit").value = data.tanggal_pengiriman;
-      document.getElementById("nama-pengirim-edit").value = data.nama_pengirim;
-      document.getElementById("asal-pengirim-edit").value = data.asal_pengirim;
-      document.getElementById("nama-penerima-edit").value = data.nama_penerima;
-      document.getElementById("notelp-penerima-edit").value = data.notelp_penerima;
-      document.getElementById("tujuan-edit").value = data.alamat_tujuan;
+      document.getElementById("id-kurir-edit").value = data.id_kurir;
+      document.getElementById("username-kurir-edit").value = data.usn_kurir;
+      document.getElementById("nama-kurir-edit").value = data.nama_kurir;
+      document.getElementById("email-kurir-edit").value = data.email_kurir;
+      document.getElementById("notelp-kurir-edit").value = data.notelp_kurir;
+      // document.getElementById("new-pw-kurir").value = data.new_pw_kurir;
+      // document.getElementById("change-pw-kurir").value = data.change_pw_kurir;
     } catch (error) {
       console.error("Error fetching paket details:", error);
     }
@@ -342,4 +342,72 @@
       alert("terjadi kesalahan");
     }
   } 
+
+  // handle update
+  async function handleUpdateKurir(updateKurir, id_kurir) {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/kurir/update.php?id_kurir=${id_kurir}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(updateKurir),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log("Courier updated: ", data);
+
+      // redirect ke halaman pesan.html
+      window.location.href = "kurir.html";
+    } catch (error) {
+      console.error("Error updating courier: ", error);
+    }
+  }
+
+
+  // Event listener for delete buttons
+  // Function to add event listeners to delete buttons
+    function addDeleteEventListeners() {
+      document.querySelectorAll('.delete-button-kurir').forEach(button => {
+        button.addEventListener('click', async function() {
+          const idKurir = this.getAttribute('data-id');
+          const confirmed = confirm('Apakah Anda yakin ingin menghapus kurir ini?');
+
+          if (confirmed) {
+            await handleDeleteKurir(idKurir);
+            // Setelah penghapusan berhasil, refresh data
+            getAllKurir();
+          }
+        });
+      });
+    }
+
+  // delete 
+  async function handleDeleteKurir(id_kurir){
+    try{
+      const response = await fetch(`${BASE_URL}/kurir/delete.php?id_kurir=${id_kurir}`, {
+        method: "DELETE"
+      });
+
+      if(!response.ok){
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      // get the result from the response
+
+      const result = await response.json();
+      console.log("data kurir berhasil di hapus: ", result);
+      
+    } catch (error) {
+      console.error("Error deleting courier: ", error);
+    }
+
+  }
 

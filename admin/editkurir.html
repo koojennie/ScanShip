@@ -192,40 +192,42 @@
                                 </div>
                                 <div class="card-body">
                                     <form action="" id="edit-kurir-form" method="post">
-                                        <input type="hidden" id="id-kurir-edit" name="id-kurir-edit" value="">
                                         <div class="row">
                                             <div class="col-lg-8">                              
                                                 <div class="form-group">
                                                     <label for="id-kurir">ID</label>
-                                                    <input type="text" class="form-control" id="id-kurir-edit" name="id-kurir-edit" placeholder="Masukkan ID" value="" required/>
+                                                    <input type="text" class="form-control" id="id-kurir-edit" name="id-kurir-edit" placeholder="Masukkan ID" value="" readonly/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <!-- disini masih belum -->
-                                                    <label for="username">Username</label>
-                                                    <input type="text" class="form-control" id="nama-pengirim-edit" name="nama-pengirim-edit" placeholder="Enter Name" value="" required/>
+                                                    <label for="username-kurir">Username</label>
+                                                    <input type="text" class="form-control" id="username-kurir-edit" name="username-kurir-edit" placeholder="Masukkan username" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="asal-pengirim-edit">Nama</label>
-                                                    <input type="text" class="form-control" id="asal-pengirim-edit" name="asal-pengirim-edit" placeholder="Enter Address" value="" required/>
+                                                    <label for="nama-kurir">Nama</label>
+                                                    <input type="text" class="form-control" id="nama-kurir-edit" name="nama-kurir-edit" placeholder="Masukkan nama" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="nama-penerima-edit">Password</label>
-                                                    <input type="text" class="form-control" id="nama-penerima-edit" name="nama-penerima-edit" placeholder="Enter Name" value="" required/>
+                                                    <label for="email-kurir">Email</label>
+                                                    <input type="text" class="form-control" id="email-kurir-edit" name="email-kurir-edit" placeholder="Masukkan email" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="no_telp">Email</label>
-                                                    <input type="text" class="form-control" id="notelp-penerima-edit" name="notelp-penerima-edit" placeholder="Enter Phone Number" value="" required/>
+                                                    <label for="notelp-kurir">No Telepon</label>
+                                                    <input type="text" class="form-control" id="notelp-kurir-edit" name="notelp-kurir-edit" placeholder="Masukkan nomor telepon" value="" required/>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="tujuan-edit">Alamat Tujuan</label>
-                                                    <input type="text" class="form-control" id="tujuan-edit" name="tujuan-edit" placeholder="Enter Full Address" value="" required/>
+                                                    <label for="pw-baru-kurir">Password baru</label>
+                                                    <input type="password" class="form-control" id="new-pw-kurir" name="pwbaru-kurir-edit" placeholder="Masukkan password" value=""/>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="change-pw-kurir" name="change_password">
+                                                    <label class="form-check-label" for="centang-pw-edit">Ubah password</label>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <!-- Kosong untuk tampilan responsif -->
                                             </div>
                                             <div class="col-lg-12 pt-5">
-                                                <a href="paket.html" class="btn btn-secondary">BACK</a>
+                                                <a href="kurir.html" class="btn btn-secondary">BACK</a>
                                                 <button type="submit" class="btn btn-primary">UPDATE</button>
                                             </div>
                                         </div>
@@ -245,26 +247,27 @@
     <script>
         // Ambil no_resi dari query string atau URL
         const urlParams = new URLSearchParams(window.location.search);
-        const noResi = urlParams.get('no_resi');
+        const idKurir = urlParams.get('id_kurir');
 
-        if(noResi) {
-            getPaketDetailForEdit(noResi);
+        if(idKurir) {
+            getKurirDetailForEdit(idKurir);
 
-            document.getElementById('edit-paket-form').addEventListener('submit', async function(event){
+            document.getElementById('edit-kurir-form').addEventListener('submit', async function(event){
                 event.preventDefault();
 
-            const updatePaket = {
-                tanggal_pengiriman: document.getElementById("tanggal-pengiriman-edit").value,
-                nama_pengirim: document.getElementById("nama-pengirim-edit").value,
-                asal_pengirim: document.getElementById("asal-pengirim-edit").value,
-                nama_penerima: document.getElementById("nama-penerima-edit").value,
-                notelp_penerima: document.getElementById("notelp-penerima-edit").value,
-                alamat_tujuan: document.getElementById("tujuan-edit").value,
+            const updateKurir = {
+                id_kurir: document.getElementById("id-kurir-edit").value,
+                usn_kurir: document.getElementById("username-kurir-edit").value,
+                nama_kurir: document.getElementById("nama-kurir-edit").value,
+                email_kurir: document.getElementById("email-kurir-edit").value,
+                notelp_kurir: document.getElementById("notelp-kurir-edit").value,
+                // new_pw_kurir: document.getElementById("new-pw-kurir").value,
+                // change_pw_kurir: document.getElementById("change-pw-kurir").value,
              };
 
-            const no_resi = document.getElementById("no-resi-edit").value;
+            const id_kurir = document.getElementById("id-kurir-edit").value;
 
-            handleUpdatePaket(updatePaket, no_resi);
+            handleUpdateKurir(updateKurir, id_kurir);
 
             })
 
