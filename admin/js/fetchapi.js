@@ -1,6 +1,6 @@
   // BASE API URL, kalau punya kamu port localhost beda ganti disini ya cantik 💙
   // di liat juga akhiran gak pake slash / 
-  BASE_URL = `http://localhost:8080/scanship-api`
+  BASE_URL = `http://localhost/scanship-api`
 
 
   // paket
@@ -24,8 +24,10 @@
       tableBody.innerHTML = "";
 
       // Mengiterasi data dan membuat baris tabel
-      result.data.forEach((item, index) => {
+      result.data.forEach((item) => {
         const row = document.createElement("tr");
+
+        console.log(item);
 
         row.innerHTML = `
             <td>${item.no_resi}</td>
@@ -33,6 +35,7 @@
             <td>${item.nama_penerima}</td>
             <td>${item.notelp_penerima}</td>
             <td>${item.alamat_tujuan}</td>
+            <td>${item.nama_kurir}</td>
             <td>
               <a href="editpaket.html?no_resi=${item.no_resi}" class="btn btn-sm btn-warning btn-round"><i class="fas fa-edit" aria-hidden="true"></i></a>
               <button class="btn btn-sm btn-danger btn-round delete-button-paket" data-id="${item.no_resi}" data-type="paket">
@@ -62,8 +65,6 @@
 
       const data = result.data;
 
-      // console.log("ini data dari get", data);
-
       // Isi form dengan data yang diambil
       document.getElementById("no-resi-edit").value = data.package.no_resi;
       document.getElementById("tanggal-pengiriman-edit").value = data.package.tanggal_pengiriman;
@@ -72,6 +73,7 @@
       document.getElementById("nama-penerima-edit").value = data.package.nama_penerima;
       document.getElementById("notelp-penerima-edit").value = data.package.notelp_penerima;
       document.getElementById("tujuan-edit").value = data.package.alamat_tujuan;
+      // document.getElementById("edit-kurir").value = data.package.id_kurir;
     } catch (error) {
       console.error("Error fetching paket details:", error);
     }
@@ -250,6 +252,27 @@
           tableBody.appendChild(row);
           addDeleteEventListeners();
       });
+    } catch (error) {
+      console.log("Terdapat error saat fetch API:", error);
+    }
+  }
+
+
+  async function getKurir() {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/kurir/read.php`
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+
+      // Mengambil elemen tbody
+      return result;
+    
     } catch (error) {
       console.log("Terdapat error saat fetch API:", error);
     }

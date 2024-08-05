@@ -202,7 +202,7 @@
                                                 <!-- end sementara -->
                                                 <div class="form-group">
                                                     <label for="tanggal">Tanggal Pengiriman</label>
-                                                    <input type="text" class="form-control" id="tanggal-pengiriman-input" name="tanggal-pengiriman-input" placeholder="Enter Date" value="" required/>
+                                                    <input type="date" class="form-control" id="tanggal-pengiriman-input" name="tanggal-pengiriman-input" placeholder="Enter Date" value="" required/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nama-pengirim">Nama Pengirim</label>
@@ -223,6 +223,10 @@
                                                 <div class="form-group">
                                                     <label for="tujuan-input">Alamat Tujuan</label>
                                                     <input type="text" class="form-control" id="tujuan-input" name="tujuan-input" placeholder="Enter Full Address" value="" required/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pilih-kurir">Pilih Kurir yang tersedia</label>
+                                                    <select class="form-select form-control" id="pilih-kurir"></select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">
@@ -251,6 +255,16 @@
         document.getElementById('input-paket-form').addEventListener('submit', async function(event){
             event.preventDefault();
             
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+
+            // Membentuk string dengan format yyyy-mm-ddThh:mm
+            const datetimeLocalValue = `${year}-${month}-${day}T${hours}:${minutes}`;
+
             const paketData = {
                 no_resi: document.getElementById('no_resi-pengiriman-input').value,
                 tanggal_pengiriman: document.getElementById('tanggal-pengiriman-input').value,
@@ -259,6 +273,9 @@
                 nama_penerima: document.getElementById("nama-penerima-input").value,
                 notelp_penerima: document.getElementById("notelp-penerima-input").value,
                 alamat_tujuan: document.getElementById("tujuan-input").value,
+                id_kurir: document.getElementById('pilih-kurir').value,
+                status_tanggal: datetimeLocalValue,
+                status_lokasi: 'No resi telah dibuat'
             }
 
              // Lakukan validasi data
@@ -267,10 +284,33 @@
             //     return;
             // }
 
-            await handlePostPaket(paketData);
+            // console.log(paketData);
 
+            await handlePostPaket(paketData);
+        });
+
+        const pilihKurir = document.getElementById('pilih-kurir');
+
+        const dataKurirTersedia = getKurir();
+        
+        dataKurirTersedia.then(kurir => {
+            console.log(kurir.data);
             
+            const opsiKurirTersedia = kurir.data.map(k => `
+            <option value="${k.id_kurir}">${k.nama_kurir}</option>
+            `);
+
+
+            // menambahkan opsi ke element select
+
+            pilihKurir.innerHTML = opsiKurirTersedia;
+            
+        }).catch(error => {
+            console.error('Error Fetching kurir data: ', error);
         })
+
+
+
     </script>
 
     <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>

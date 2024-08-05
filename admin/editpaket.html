@@ -222,6 +222,10 @@
                                                     <label for="tujuan-edit">Alamat Tujuan</label>
                                                     <input type="text" class="form-control" id="tujuan-edit" name="tujuan-edit" placeholder="Enter Full Address" value="" required/>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="edit-kurir">Kurir</label>
+                                                    <input type="text" class="form-select form-control" id="edit-kurir" readonly>
+                                                </div>
                                             </div>
                                             <div class="col-lg-4">
                                                 <!-- Kosong untuk tampilan responsif -->
@@ -248,6 +252,7 @@
         // Ambil no_resi dari query string atau URL
         const urlParams = new URLSearchParams(window.location.search);
         const noResi = urlParams.get('no_resi');
+        const pilihKurir = document.getElementById('edit-kurir');
 
         if(noResi) {
             getPaketDetailForEdit(noResi);
@@ -263,13 +268,31 @@
                 nama_penerima: document.getElementById("nama-penerima-edit").value,
                 notelp_penerima: document.getElementById("notelp-penerima-edit").value,
                 alamat_tujuan: document.getElementById("tujuan-edit").value,
+                // id_kurir: document.getElementById('edit-kurir').value
              };
 
             const no_resi = document.getElementById("no-resi-edit").value;
 
             handleUpdatePaket(updatePaket, no_resi);
 
-            })
+            });
+
+            getPaketDetail(noResi).then(data => {
+                const dataPaketKurir = data.package.id_kurir;
+                const dataKurirTersedia = getKurir();
+            
+                    dataKurirTersedia.then(kurir => {
+                    const kurirdata = kurir.data;
+    
+                    // filter
+                    const kurirFilter = kurirdata.filter(k=> k.id_kurir == dataPaketKurir)
+                    pilihKurir.value = kurirFilter[0].nama_kurir;
+    
+                });
+            });
+
+
+            // console.log(dataPaketKurir)
 
         }
     </script>
