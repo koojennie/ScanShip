@@ -1,4 +1,4 @@
-BASE_URL = `http://localhost/scanship-api`;
+BASE_URL = `http://localhost:8080/scanship-api`;
 
 async function login(dataLogin) {
   try {
@@ -55,6 +55,8 @@ async function logout() {
     if (data.status === 200) {
       // Hapus data pengguna dari local storage
       localStorage.removeItem("userData");
+      // Simpan status logout di localStorage
+      localStorage.setItem('logoutStatus', 'success');
       // Redirect ke halaman login
       window.location.href = "../login.html";
     } else {

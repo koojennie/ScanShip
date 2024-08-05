@@ -1,4 +1,4 @@
-BASE_URL = `http://localhost/scanship-api`;
+BASE_URL = `http://localhost:8080/scanship-api`;
 
 async function getPaketDetail(noResi) {
   // ambil no resi

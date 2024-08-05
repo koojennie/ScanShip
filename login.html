@@ -11,6 +11,9 @@
       crossorigin="anonymous"
     />
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     <title>Login - ScanShip</title>
 
@@ -85,7 +88,8 @@
                             type="text"
                             id="input-username"
                             placeholder="Masukkan username anda"
-                            required
+                            required oninvalid="this.setCustomValidity('Masukkan username anda 👧🏻');" 
+                            onchange="try{setCustomValidity('')}catch(e){};" x-moz-errormessage="Masukkan username anda 👧🏻"
                           />
                         </div>
 
@@ -97,9 +101,10 @@
                               type="password"
                               id="input-password"
                               placeholder="Masukkan password anda"
-                              required
+                              required oninvalid="this.setCustomValidity('Masukkan password anda 🔒');" 
+                              onchange="try{setCustomValidity('')}catch(e){};" x-moz-errormessage="Masukkan password anda 🔒"
                             />
-                            <i class="ri-eye-off-line login__eye" id="input-icon"></i>
+                            <i class="fa-solid fa-eye login__eye" id="togglePassword"></i>
                           </div>
                         </div>
                     <div>
@@ -123,7 +128,6 @@
 
     <script src="assets/js/login.js"></script>
     <script>
-
     const loginForm = document.getElementById('loginForm');
       
       loginForm.addEventListener('submit', async function(event) {
@@ -137,8 +141,51 @@
 
         await login(dataLogin);
       });
+    </script>
 
-      
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Cek status logout di localStorage
+        const logoutStatus = localStorage.getItem('logoutStatus');
+
+        if (logoutStatus === 'success') {
+          // Tampilkan notifikasi
+          var notyf = new Notyf({
+            duration: 2000,
+            position: {
+              x: 'right',
+              y: 'top',
+            },
+            dismissible: true, // Menjadikan notifikasi bisa ditutup
+            types: [
+              {
+                type: 'custom',
+                background: 'linear-gradient(69.8deg, rgb(25, 49, 108) 2.8%, rgb(1, 179, 201) 97.8%)',
+                icon: {
+                  tagName: 'i',
+                  className: 'fa-solid fa-arrow-right-from-bracket',
+                }
+              }
+            ]
+          });
+
+          notyf.open({
+            type: 'custom',
+            message: 'Berhasil logout!',
+          });
+
+          // Hapus status logout dari localStorage
+          localStorage.removeItem('logoutStatus');
+        }
+
+        const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#input-password');
+            togglePassword.addEventListener('click', function (e) {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                this.classList.toggle('fa-eye-slash');
+        });
+      });
     </script>
 
   </body>

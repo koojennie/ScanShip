@@ -142,16 +142,26 @@ img {
   border: 2px solid #033c57;
 }
 
+.login__input::placeholder {
+  color: #5f5f5f; /* Warna abu-abu untuk placeholder */
+}
+
 .login__box {
   position: relative;
 }
 
 .login__box .login__input {
-  padding-right: 36px;
+  padding-right: 2.5rem;
 }
 
 .login__eye {
-  width: max-content;
+  position: absolute;
+  right: 0.75rem;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #033c57;
+  /* width: max-content;
   height: max-content;
   position: absolute;
   right: 0.75rem;
@@ -160,6 +170,8 @@ img {
   margin: auto 0;
   font-size: 1.25rem;
   cursor: pointer;
+  padding: 1rem;
+  padding-left: 10px; */
 }
 
 .login__check-label {
@@ -196,13 +208,23 @@ img {
   width: 100%;
   padding: 14px 2rem;
   border-radius: 6px;
-  background: linear-gradient(180deg, #033c57, #044c6d);
+  background: linear-gradient(180deg, #033c57, #04608a);
   color: #ffffff;
   font-size: var(--small-font-size);
   font-weight: var(--font-semi-bold);
-  box-shadow: 0 6px 24px #033c5798;
+  box-shadow: 0 20px 40px -6px #033c5798;
   margin-bottom: 1rem;
   margin-top: 50px;
+  transition: all 0.3s ease-in-out;
+}
+
+.login__button:hover {
+  transform: translatey(10px);
+  box-shadow: none;
+}
+
+.login__button:active {
+  opacity: 0.5;
 }
 
 .login__forgot {

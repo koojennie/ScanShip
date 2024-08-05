@@ -196,7 +196,7 @@
                       </li>
                       <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="../logout.html"
+                        <a class="dropdown-item" onclick="logout()" href=""
                           >Logout</a
                         >
                       </li>
@@ -272,6 +272,22 @@
       </div>
     </div>
 
+    <script src="../assets/js/login.js"></script>
+    <script>
+      const userData = JSON.parse(localStorage.getItem("userData"));
+
+      // Periksa apakah pengguna adalah admin
+      if (!userData || userData.role !== "kurir") {
+        // Jika bukan admin, redirect atau tampilkan pesan error
+        alert(
+          "Access Denied: You do not have permission to access this page."
+        );
+        window.location.href = "../login.html"; // Redirect ke halaman login atau halaman lain yang sesuai
+      } else {
+        console.log("Welcome, kurir!");
+      }
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
     <script>
       
