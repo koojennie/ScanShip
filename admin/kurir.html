@@ -235,8 +235,7 @@
                     <div class="table-responsive">
                       <table
                         id="kurir-datatables"
-                        class="display table table-striped table-hover"
-                      >
+                        class="display table table-striped table-hover">
                         <thead>
                           <tr>
                             <th>ID</th>
@@ -263,8 +262,23 @@
     <script src="../assets/js/login.js"></script>
 
     <script>
-        // Panggil fungsi untuk mengambil dan menampilkan data
-        getAllKurir();
+
+      document.addEventListener('DOMContentLoaded', () => {
+          // Ambil data pengguna dari local storage
+          const userData = JSON.parse(localStorage.getItem('userData'));
+
+          // Periksa apakah pengguna adalah admin
+          if (!userData || userData.role !== 'admin') {
+              // Jika bukan admin, redirect atau tampilkan pesan error
+              alert('Access Denied: You do not have permission to access this page.');
+              window.location.href = '../login.html'; // Redirect ke halaman login atau halaman lain yang sesuai
+          } else {
+              // console.log('Welcome, admin!');
+              getAllKurir();        
+          }
+        });
+
+
     </script>
 
     <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>
@@ -283,8 +297,8 @@
     <!-- Chart Circle -->
     <script src="../assets/admin/js/plugin/chart-circle/circles.min.js"></script>
 
-    <!-- Datatables -->
-    <script src="../assets/admin/js/plugin/datatables/datatables.min.js"></script>
+   <!-- Datatables -->
+   <script src="../assets/admin/js/plugin/datatables/datatables.min.js"></script>
 
     <!-- jQuery Vector Maps -->
     <script src="../assets/admin/js/plugin/jsvectormap/jsvectormap.min.js"></script>
@@ -301,12 +315,13 @@
     <script src="../assets/admin/js/demo.js"></script>
     <script>
 
-    //   $(document).ready(function () {
-    //     // Inisialisasi DataTables
-    //     $("#kurir-datatables").DataTable({
-    //         // columnDefs: [{ width: '10%', targets: 0 }]
-    //     });
-    //   });
+      $(document).ready(function () {
+        // Inisialisasi DataTables
+        $("#kurir-datatables").DataTable({
+            // columnDefs: [{ width: '10%', targets: 0 }]
+        });
+      });
+      
 
     </script>
     <!-- Code injected by live-server -->

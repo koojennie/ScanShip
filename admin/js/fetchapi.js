@@ -1,6 +1,6 @@
   // BASE API URL, kalau punya kamu port localhost beda ganti disini ya cantik 💙
   // di liat juga akhiran gak pake slash / 
-  BASE_URL = `http://localhost:8080/scanship-api`
+  BASE_URL = `http://localhost/scanship-api`
 
 
   // paket
@@ -27,8 +27,6 @@
       result.data.forEach((item) => {
         const row = document.createElement("tr");
 
-        console.log(item);
-
         row.innerHTML = `
             <td>${item.no_resi}</td>
             <td>${item.tanggal_pengiriman}</td>
@@ -45,7 +43,7 @@
           `;
 
           tableBody.appendChild(row);
-          addDeleteEventListeners();
+          addDeleteEventListenersPaket();
       });
     } catch (error) {
       console.log("Terdapat error saat fetch API:", error);
@@ -172,7 +170,7 @@
 
   // Event listener for delete buttons
   // Function to add event listeners to delete buttons
-    function addDeleteEventListeners() {
+    function addDeleteEventListenersPaket() {
       document.querySelectorAll('.delete-button-paket').forEach(button => {
         button.addEventListener('click', async function() {
           const noResi = this.getAttribute('data-id');
@@ -250,7 +248,7 @@
           `;
 
           tableBody.appendChild(row);
-          addDeleteEventListeners();
+          addDeleteEventListenersKurir();
       });
     } catch (error) {
       console.log("Terdapat error saat fetch API:", error);
@@ -397,7 +395,7 @@
 
   // Event listener for delete buttons
   // Function to add event listeners to delete buttons
-    function addDeleteEventListeners() {
+    function addDeleteEventListenersKurir() {
       document.querySelectorAll('.delete-button-kurir').forEach(button => {
         button.addEventListener('click', async function() {
           const idKurir = this.getAttribute('data-id');
