@@ -356,11 +356,18 @@
       console.log('Kurir berhasil ditambahkan:', data);
 
       // Tampilkan pesan sukses atau redirect ke halaman lain
-      window.location.href = "kurir.html"
+      if (data.status === 201) {
+        window.location.href = "kurir.html";
+        return data.id_kurir;
+      } else {
+          alert("Terjadi kesalahan saat menambahkan kurir");
+          return null;
+      }
 
     } catch(error){
       console.error("Error insert paket: ", error);
       alert("terjadi kesalahan");
+      return null;
     }
   } 
 

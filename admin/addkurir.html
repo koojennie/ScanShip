@@ -197,7 +197,7 @@
                                                 <!-- sementara -->
                                                 <div class="form-group">
                                                     <label for="id-kurir">ID</label>
-                                                    <input type="text" class="form-control" id="id-kurir-input" name="id-kurir-input" placeholder="Masukkan ID" value="" required/>
+                                                    <input type="text" class="form-control" id="id-kurir-input" name="id-kurir-input" placeholder="ID otomatis" value="" readonly/>
                                                 </div>
                                                 <!-- end sementara -->
                                                 <div class="form-group">
@@ -243,13 +243,30 @@
     <!--   Core JS Files   -->
 
     <script src="../assets/js/login.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ambil data pengguna dari local storage
+            const userData = JSON.parse(localStorage.getItem('userData'));
+  
+            // Periksa apakah pengguna adalah admin
+            if (!userData || userData.role !== 'admin') {
+                // Jika bukan admin, redirect atau tampilkan pesan error
+                alert('Access Denied: You do not have permission to access this page.');
+                window.location.href = '../login.html'; // Redirect ke halaman login atau halaman lain yang sesuai
+            } else {
+                // console.log('Welcome, admin!');
+                getAllKurir();        
+              }
+              getAllKurir();
+            });
+    </script>
     <script src="js/fetchapi.js"></script>
     <script>
         document.getElementById('input-kurir-form').addEventListener('submit', async function(event){
             event.preventDefault();
             
             const kurirData = {
-                id_kurir: document.getElementById('id-kurir-input').value,
                 usn_kurir: document.getElementById('username-kurir-input').value,
                 nama_kurir: document.getElementById("nama-kurir-input").value,
                 pw_kurir: document.getElementById("pw-kurir-input").value,
@@ -257,16 +274,22 @@
                 notelp_kurir: document.getElementById("notelp-kurir-input").value,
             }
 
-             // Lakukan validasi data
-            // if (!paketData.no_resi || !paketData.tanggal || !paketData.nama_pengirim || !paketData.nama_penerima) {
-            //     alert("Mohon isi semua data yang diperlukan.");
-            //     return;
-            // }
-
-            await handlePostKurir(kurirData);
-
-            
+            const newKurirId = await handlePostKurir(kurirData);
+            if (newKurirId) {
+                document.getElementById('id-kurir-input').value = newKurirId;
+            }
         })
+
+        async function fetchNextKurirId() {
+            const response = await fetch(`${BASE_URL}/kurir/getNextKurirId.php`);
+            const data = await response.json();
+            return data.nextId;
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            const nextKurirId = await fetchNextKurirId();
+            document.getElementById('id-kurir-input').value = nextKurirId;
+        });
     </script>
 
     <script src="../assets/admin/js/core/jquery-3.7.1.min.js"></script>

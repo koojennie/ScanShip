@@ -244,6 +244,24 @@
     <!--   Core JS Files   -->
 
     <script src="../assets/js/login.js"></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ambil data pengguna dari local storage
+            const userData = JSON.parse(localStorage.getItem('userData'));
+  
+            // Periksa apakah pengguna adalah admin
+            if (!userData || userData.role !== 'admin') {
+                // Jika bukan admin, redirect atau tampilkan pesan error
+                alert('Access Denied: You do not have permission to access this page.');
+                window.location.href = '../login.html'; // Redirect ke halaman login atau halaman lain yang sesuai
+            } else {
+                // console.log('Welcome, admin!');
+                getAllKurir();        
+              }
+              getAllKurir();
+            });
+    </script>
     <script src="js/fetchapi.js"></script>
     <script>
         // Ambil no_resi dari query string atau URL
