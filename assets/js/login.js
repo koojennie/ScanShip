@@ -1,4 +1,4 @@
-BASE_URL = `http://localhost/scanship-api`;
+BASE_URL = `http://localhost:8080/scanship-api`;
 
 async function login(dataLogin) {
   try {
@@ -28,12 +28,40 @@ async function login(dataLogin) {
         window.location.href = "kurir/scanqr.html";
       }
     } else {
-      console.log("Login Gagal: ", data.message);
+        showNotification('Username atau password salah');
+        console.log("Login Gagal: ", data.message);
     }
 
   } catch (error) {
-    console.log("Terdapat error ketika login : ", error);
+      showNotification('Username atau password salah');
+      console.log("Terdapat error ketika login : ", error);
   }
+}
+
+function showNotification(message) {
+  var notyf = new Notyf({
+    duration: 2000,
+    position: {
+      x: 'right',
+      y: 'top',
+    },
+    dismissible: true,
+    types: [
+      {
+        type: 'custom',
+        background: 'linear-gradient(69.8deg, rgb(25, 49, 108) 2.8%, rgb(1, 179, 201) 97.8%)',
+        icon: {
+          tagName: 'i',
+          className: 'fa-solid fa-exclamation-circle',
+        }
+      }
+    ]
+  });
+
+  notyf.open({
+    type: 'custom',
+    message: message,
+  });
 }
 
 async function logout() {
@@ -66,4 +94,3 @@ async function logout() {
     console.error('Error selama logout:', error);
   }
 }
-
