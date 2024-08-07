@@ -1,6 +1,6 @@
   // BASE API URL, kalau punya kamu port localhost beda ganti disini ya cantik 💙
   // di liat juga akhiran gak pake slash / 
-  BASE_URL = `http://localhost/scanship-api`
+  BASE_URL = `http://localhost:8080/scanship-api`
 
 
   // paket
@@ -174,10 +174,6 @@ function addDeleteEventListenersPaket() {
   // First, remove any previously added event listeners to avoid duplicates
   document.querySelectorAll('.delete-button-paket').forEach(button => {
     button.removeEventListener('click', handleDeleteButtonClick);
-  });
-
-  // Add new event listeners
-  document.querySelectorAll('.delete-button-paket').forEach(button => {
     button.addEventListener('click', handleDeleteButtonClick);
   });
 }
@@ -185,13 +181,46 @@ function addDeleteEventListenersPaket() {
 // Handle delete button click
 async function handleDeleteButtonClick() {
   const noResi = this.getAttribute('data-id');
-  const confirmed = confirm('Apakah Anda yakin ingin menghapus paket ini?');
+  // Show SweetAlert confirmation dialog
+  Swal.fire({
+    title: 'Apakah Anda yakin ingin menghapus paket ini?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#033C57',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, hapus!',
+    cancelButtonText: 'Batal'
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      const deleteResult = await handleDeletePaket(noResi);
+      if (deleteResult) {
+        Swal.fire({
+          title: 'Terhapus!',
+          text: 'Data berhasil dihapus.',
+          icon: 'success',
+          confirmButtonColor: '#033C57'
+        }).then(() => {
+          // After showing success message, refresh data
+          getAllPaket();
+        });
+      } else {
+        // Show error message
+        Swal.fire({
+          title: 'Error!',
+          text: 'Terjadi kesalahan saat menghapus data.',
+          icon: 'error',
+          confirmButtonColor: '#033C57'
+        });
+      }
+    }
+  });
+  // const confirmed = confirm('Apakah Anda yakin ingin menghapus paket ini?');
 
-  if (confirmed) {
-    await handleDeletePaket(noResi);
-    // After successful deletion, refresh data
-    getAllPaket();
-  }
+  // if (confirmed) {
+  //   await handleDeletePaket(noResi);
+  //   // After successful deletion, refresh data
+  //   getAllPaket();
+  // }
 }
 
 // Delete handler
@@ -208,6 +237,11 @@ async function handleDeletePaket(no_resi) {
     const result = await response.json();
     console.log("data anda berhasil di hapus: ", result);
 
+    if (result.status === 200) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (error) {
     console.error("Error deleting paket: ", error);
   }
@@ -411,13 +445,41 @@ async function handleDeletePaket(no_resi) {
       document.querySelectorAll('.delete-button-kurir').forEach(button => {
         button.addEventListener('click', async function() {
           const idKurir = this.getAttribute('data-id');
-          const confirmed = confirm('Apakah Anda yakin ingin menghapus kurir ini?');
-
-          if (confirmed) {
-            await handleDeleteKurir(idKurir);
-            // Setelah penghapusan berhasil, refresh data
-            getAllKurir();
-          }
+          
+          // Show SweetAlert confirmation dialog
+          Swal.fire({
+            title: 'Apakah Anda yakin ingin menghapus kurir ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#033C57',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              const deleteResult = await handleDeleteKurir(idKurir);
+              if (deleteResult) {
+                // Show success message
+                Swal.fire({
+                  title: 'Terhapus!',
+                  text: 'Data berhasil dihapus.',
+                  icon: 'success',
+                  confirmButtonColor: '#033C57'
+                }).then(() => {
+                  // After showing success message, refresh data
+                  getAllKurir();
+                });
+              } else {
+                // Show error message
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'Terjadi kesalahan saat menghapus data.',
+                  icon: 'error',
+                  confirmButtonColor: '#033C57'
+                });
+              }
+            }
+          });
         });
       });
     }
@@ -437,6 +499,12 @@ async function handleDeletePaket(no_resi) {
 
       const result = await response.json();
       console.log("data kurir berhasil di hapus: ", result);
+
+      if (result.status === 200) {
+        return true;
+      } else {
+        return false;
+      }
       
     } catch (error) {
       console.error("Error deleting courier: ", error);

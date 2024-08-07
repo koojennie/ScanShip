@@ -16,6 +16,7 @@
 * assets/js/login.js:1
 * assets/js/resi.js:16
 * kurir/updatelokasi.js:1
+* admin/cetakresi.html:170
 
 #### 💆🏻‍♀️ File QR code terdapat pada folder kode qr
 

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (pageURL[0]) {
       let no_resi = pageURL[0].split(/[=]+/)[1],
-      urlApi = `http://localhost/scanship-api/paket/read.php?no_resi=${no_resi}`;
+      urlApi = `http://localhost:8080/scanship-api/paket/read.php?no_resi=${no_resi}`;
 
     console.log(urlApi);
     // Logika URL
