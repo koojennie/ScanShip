@@ -11,7 +11,7 @@
 * cetak resi
 * id otomatis kurir dan no resi
 
-#### 🎻 Perhatian terdapat beberapa port yang berbeda karena localhost:8080
+#### 🎻 Perhatian terdapat beberapa port yang berbeda karena localhost
 * admin/js/fetchapi.js:3
 * assets/js/login.js:1
 * assets/js/resi.js:16
@@ -24,6 +24,6 @@
 #### 💕 Untuk clone project ini:
 1. unduh kedua repo yaitu scanship-api dan ScanShip
 2. download file database "scanship.sql" lalu buat database baru dengan nama yang sama dan import
-3. ganti port jika port yang digunakan localhost (bukan localhost:8080)
+3. ganti port jika port yang digunakan localhost (bukan localhost)
 4. untuk akses ke updatelokasi.html, gunakan kode qr.
 5. pastikan nama kurir memang sama dan sesuai dengan tabel paket di database

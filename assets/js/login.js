@@ -1,4 +1,4 @@
-BASE_URL = `http://localhost:8080/scanship-api`;
+BASE_URL = `http://localhost/scanship-api`;
 
 async function login(dataLogin) {
   try {
