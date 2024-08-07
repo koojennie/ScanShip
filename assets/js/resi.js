@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
               <tr><td>Nama Penerima</td><td>:</td><td>${respon.package.nama_penerima}</td></tr>
               <tr><td>No Telp Penerima</td><td>:</td><td>${respon.package.notelp_penerima}</td></tr>
               <tr><td>Alamat Tujuan</td><td>:</td><td>${respon.package.alamat_tujuan}</td></tr>
-              <tr><td>Tanggal Penerimaan</td><td>:</td><td>${respon.package.tanggal_penerimaan}</td></tr>
           </table>`;
         // Perjalanan Paket
         respon.status.forEach((e) => {

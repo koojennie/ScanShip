@@ -9,6 +9,7 @@
 * update lokasi kurir
 * login logout admin kurir
 * cetak resi
+* id otomatis kurir dan no resi
 
 #### 🎻 Perhatian terdapat beberapa port yang berbeda karena localhost:8080
 * admin/js/fetchapi.js:3
@@ -16,4 +17,13 @@
 * assets/js/resi.js:16
 * kurir/updatelokasi.js:1
 
+#### 💆🏻‍♀️ File QR code terdapat pada folder kode qr
+
 #### 🍀 Keseluruhan project dalam bahasa Indonesia
+
+#### 💕 Untuk clone project ini:
+1. unduh kedua repo yaitu scanship-api dan ScanShip
+2. download file database "scanship.sql" lalu buat database baru dengan nama yang sama dan import
+3. ganti port jika port yang digunakan localhost (bukan localhost:8080)
+4. untuk akses ke updatelokasi.html, gunakan kode qr.
+5. pastikan nama kurir memang sama dan sesuai dengan tabel paket di database

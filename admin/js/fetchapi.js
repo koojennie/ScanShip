@@ -35,6 +35,7 @@
             <td>${item.alamat_tujuan}</td>
             <td>${item.nama_kurir}</td>
             <td>
+              <a href="cetakresi.html?no_resi=${item.no_resi}" target="_blank" class="btn btn-info btn-sm btn-round"><i class="fas fa-receipt" aria-hidden="true"></i></a>
               <a href="editpaket.html?no_resi=${item.no_resi}" class="btn btn-sm btn-warning btn-round"><i class="fas fa-edit" aria-hidden="true"></i></a>
               <button class="btn btn-sm btn-danger btn-round delete-button-paket" data-id="${item.no_resi}" data-type="paket">
                 <i class="fa fa-trash"></i>

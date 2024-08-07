@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cetak Resi</title>
+    <link rel="icon" href="../assets/admin/img/favicon.ico" type="image/x-icon" />
+    <style>
+        body {
+        font-family: Poppins, sans-serif;
+        }
+
+        .receipt {
+        width: 600px;
+        padding: 10px;
+        border: 1px solid #000;
+        margin: 0 auto;
+        }
+
+        .receipt-header {
+        text-align: center;
+        }
+
+        .receipt-header h1 {
+        margin: 0;
+        }
+
+        .receipt-body {
+        margin-top: 10px;
+        }
+
+        .receipt-body .info {
+        display: flex;
+        justify-content: space-between;
+        }
+
+        .receipt-body .info table {
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        .receipt-body .info table td {
+        padding: 5px;
+        border: none;
+        }
+
+        .receipt-body .items {
+        margin-top: 10px;
+        border-bottom: 1px solid #000;
+        }
+
+        .receipt-body .items table {
+        width: 100%;
+        border-collapse: collapse;
+        }
+
+        .receipt-body .items th,
+        .receipt-body .items td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+        }
+
+        .receipt-body .total {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        }
+
+        .receipt-footer {
+        margin: 30px 0 0 0;
+        border-top: 3px dotted #bbb;
+        text-align: right;
+        padding-top: 10px;
+        }
+
+        span.home {
+            border: 2px solid BLACK !important; /* Perubahan di sini */
+            padding: 5px !important; /* Tambahkan padding untuk ruang di sekitar teks */
+        }
+
+        td.kotak {
+            border: 2px solid BLACK !important;
+            text-align: center;
+        }
+
+        td.cash {
+            font-weight: bold;
+            border: 2px solid BLACK !important;
+            text-align: center;
+        }
+
+        td.ket {
+            font-style: italic;
+            border: 2px solid BLACK !important;
+            text-align: center;
+        }
+
+        hr.dotted {
+        border-top: 3px dotted #bbb;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <div class="receipt-header">
+            <img src="../assets/images/logo.png" alt="logo" width="70">
+            <hr class="dotted">
+            <h3 id="no-resi">No Resi: </h3>
+            <svg id="barcode"></svg>
+        </div>
+        <hr class="dotted">
+        <div class="receipt-body">
+            <div class="info">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="penerima">Penerima:</td>
+                            <td id="pengirim">Pengirim:</td>
+                        </tr>
+                        <tr>
+                            <td id="notelp-penerima">Notelp</td>
+                            <td id="asal-pengirim">Asal Pengirim</td>
+                        </tr>
+                        <tr>
+                            <td><span class="home"><b>Home</b></span></td>
+                        </tr>
+                        <tr>
+                            <td id="alamat">Alamat</td>
+                            <td id="kurir">Kurir</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br/>
+            <br/>
+            <div class="info">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td id="asal2-pengirim" class="kotak"></td>
+                            <td class="kotak">JABODETABEK</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <div class="info">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="cash">CASHLESS</td>
+                            <td class="ket">Pengirim tidak perlu bayar ongkir ke kurir</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="receipt-footer">
+            <p id="current-date">date(yyyy-mm-dd)</p>
+            <p>ScanShip Admin</p>
+            <img src="../assets/images/stamp.png" width="120">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const BASE_URL = "http://localhost:8080/scanship-api";
+            const urlParams = new URLSearchParams(window.location.search);
+            const noResi = urlParams.get('no_resi');
+            if (!noResi) {
+                alert('No Resi tidak ditemukan');
+                return;
+            }
+            const response = await fetch(`${BASE_URL}/paket/read.php?no_resi=${noResi}`);
+            const result = await response.json();
+            if (result.status !== 200) {
+                alert('Data tidak ditemukan');
+                return;
+            }
+            const paket = result.data.package;
+            document.getElementById('no-resi').innerText = `No. Resi: ${paket.no_resi}`;
+            document.getElementById('penerima').innerText = `Penerima: ${paket.nama_penerima}`;
+            document.getElementById('notelp-penerima').innerText = `${paket.notelp_penerima}`;
+            document.getElementById('pengirim').innerText = `Pengirim: ${paket.nama_pengirim}`;
+            document.getElementById('asal-pengirim').innerText = `Kota ${paket.asal_pengirim}`;
+            document.getElementById('asal2-pengirim').innerText = `Kota ${paket.asal_pengirim}`;
+            document.getElementById('alamat').innerText = `${paket.alamat_tujuan}`;
+            document.getElementById('kurir').innerText = `Kurir: ${paket.nama_kurir}`;
+
+            // Generate barcode
+            JsBarcode("#barcode", paket.no_resi, { format: "CODE128" });
+
+            // Tunggu sebentar sebelum print agar barcode sempat dirender
+            setTimeout(() => {
+                window.print();
+            }, 1000);
+        });
+    </script>
+
+    <script>
+        // Mendapatkan elemen dengan id current-date
+        const dateElement = document.getElementById('current-date');
+
+        // Membuat objek Date baru
+        const currentDate = new Date();
+
+        // Mendapatkan tahun, bulan, dan tanggal
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Menggunakan padStart untuk menambahkan nol di depan bulan jika perlu
+        const day = String(currentDate.getDate()).padStart(2, '0'); // Menggunakan padStart untuk menambahkan nol di depan hari jika perlu
+
+        // Mengatur teks dari elemen dateElement
+        dateElement.textContent = `${year}-${month}-${day}`;
+    </script>
+
+    <script src="js/fetchapi.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode"></script>
+</body>
+</html>

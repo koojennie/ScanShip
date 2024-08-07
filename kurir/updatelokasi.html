@@ -12,6 +12,11 @@
       href="../assets/admin/img/favicon.ico"
       type="image/x-icon"
     />
+    <!-- font awesome terbaru -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- notyf -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     <!-- Fonts and icons -->
     <script src="../assets/admin/js/plugin/webfont/webfont.min.js"></script>
@@ -344,7 +349,7 @@
 
       cardPaket.innerHTML = `
       <div class="card-header">
-          <h4 class="card-title">Info Paket</h4>
+          <h4 class="card-title"><b>Info Paket</b></h4>
           <h5 class="text-primary">${data.package.no_resi}</h5>
         </div>
         <div class="card-body">
@@ -380,7 +385,7 @@
       `;
 
       const kurirInfo = data.package.id_kurir ? `<div class="card-header">
-        <h4 class="card-title">Info Kurir</h4>
+        <h4 class="card-title"><b>Info Kurir</b></h4>
         <h5 class="text-primary">${data.package.id_kurir}</h5>
       </div>
       <div class="card-body">
@@ -522,12 +527,40 @@
 
         console.log(JSON.stringify(statusData));
 
-        updateStatusLokasi(statusData);
+        await updateStatusLokasi(statusData);
 
+        // mau notyf
+        function showNotification(message) {
+        var notyf = new Notyf({
+          duration: 2000,
+          position: {
+            x: 'right',
+            y: 'top',
+          },
+          dismissible: true,
+          types: [
+            {
+              type: 'custom',
+              background: 'linear-gradient(69.8deg, rgb(25, 49, 108) 2.8%, rgb(1, 179, 201) 97.8%)',
+              icon: {
+                tagName: 'i',
+                className: 'fa-solid fa-circle-check',
+              }
+            }
+          ]
+        });
 
-        alert("Status Berhasil ditambahkan");
+        notyf.open({
+          type: 'custom',
+          message: 'Status berhasil ditambahkan',
+        });
+      }
 
-      window.location.href = `updatelokasi.html?no_resi=${data.package.no_resi}`;
+      showNotification();
+
+      setTimeout(() => {
+        window.location.href = `updatelokasi.html?no_resi=${data.package.no_resi}`;
+      }, 2000);
 
       })
 
